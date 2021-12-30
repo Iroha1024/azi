@@ -5,7 +5,7 @@
   "typings": "es/index.d.ts",
   "scripts": {
     "dev": "vite site",
-    "format": "prettier --write \"src/**/*.{vue,js,ts,jsx,tsx}\" \"site/**/*.{vue,js,ts,jsx,tsx}\"",
+    "format": "prettier --write \"src/**/*.{vue,js,ts,jsx,tsx,css}\" \"site/**/*.{vue,js,ts,jsx,tsx}\"",
     "clean": "rimraf es",
     "build": "npm run clean && babel --extensions .ts,.tsx src -d es && tsc -p src/tsconfig.json && npm run build:css",
     "build:css": "cross-env NODE_ENV=production node script/build-css",
@@ -35,6 +35,8 @@
     "vue": "^3.2.26"
   },
   "dependencies": {
+    "@vueuse/core": "^7.4.1",
+    "classnames": "^2.3.1",
     "vue-types": "^4.1.1"
   }
 }

@@ -1,0 +1,25 @@
+.btn {
+  --z-text-normal: #111827;
+  --z-text-not-normal: #ffffff;
+  --z-bg-normal: #f0f0f0;
+}
+
+.dark .btn {
+  --z-text-normal: #f0f0f0;
+  --z-bg-normal: #353535;
+}
+
+.btn.outlined {
+  --z-bg-normal: #353535;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.rippleEffect {
+  animation: ripple 0.5s linear;
+}

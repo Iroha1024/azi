@@ -1,0 +1,4 @@
+.config-provider {
+  --z-primary-color: theme('colors.violet.500');
+  --z-error-color: theme('colors.red.500');
+}

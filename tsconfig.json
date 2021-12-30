@@ -6,6 +6,11 @@
     "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "azi": ["src/index.ts"]
+    }
   }
 }

@@ -1,9 +1,9 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig",
   "compilerOptions": {
-    "jsx": "preserve",
-    "emitDeclarationOnly": true,
     "outDir": "../es",
-    "declaration": true
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "composite": true
   }
 }

@@ -1,9 +1,9 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "../",
-    "paths": {
-      "azi": ["src/index.ts"]
+  "extends": "../tsconfig",
+  "files": [],
+  "references": [
+    {
+      "path": "../src"
     }
-  }
+  ]
 }
