@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'vue'
 
 type Style = CSSProperties & {
-  fn?: (this: Style) => void
+  set?: (this: Style) => void
   value?: boolean
 }
 
 export const styles = (...args: Style[]) => {
   const call = (acc: Style, curr: Style) => {
-    curr.fn!.call(acc)
+    curr.set!.call(acc)
     return acc
   }
   const merge = (acc: Style, curr: Style) => {
@@ -21,13 +21,13 @@ export const styles = (...args: Style[]) => {
   const style = args.reduce(
     (acc, curr) =>
       curr.value !== false
-        ? curr.fn
+        ? curr.set
           ? call(acc, curr)
           : merge(acc, curr)
         : acc,
     {}
   )
-  delete style.fn
+  delete style.set
   delete style.value
   return style
 }

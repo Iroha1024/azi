@@ -1,16 +1,20 @@
-.btn {
-  --z-text-normal: #111827;
+.z-btn {
+  --z-text-normal: #353535;
   --z-text-not-normal: #ffffff;
   --z-bg-normal: #f0f0f0;
 }
 
-.dark .btn {
+.dark .z-btn {
   --z-text-normal: #f0f0f0;
   --z-bg-normal: #353535;
 }
 
-.btn.outlined {
+.z-btn.z-color-reverse {
   --z-bg-normal: #353535;
+}
+
+.dark .z-btn.z-color-reverse {
+  --z-bg-normal: #f0f0f0;
 }
 
 @keyframes ripple {
@@ -20,6 +24,6 @@
   }
 }
 
-.rippleEffect {
+.z-ripple-effect {
   animation: ripple 0.5s linear;
 }

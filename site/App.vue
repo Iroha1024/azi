@@ -29,6 +29,7 @@
     </Showcase>
     <Showcase heading="文本" content="text">
       <z-button text>文本</z-button>
+      <z-button text type="primary">文本</z-button>
       <z-button text color="#1867c0">文本</z-button>
     </Showcase>
     <Showcase heading="凹陷" content="depressed">
@@ -38,13 +39,35 @@
     <Showcase heading="禁用" content="disabled">
       <z-button disabled>禁用</z-button>
     </Showcase>
+    <Showcase heading="图标" content="size">
+      <z-button>
+        <div>HOME</div>
+        <z-icon><home theme="filled" /></z-icon>
+      </z-button>
+      <z-button>
+        <z-icon><home theme="filled" /></z-icon>
+        HOME
+      </z-button>
+      <z-button icon>
+        <z-icon><airplay theme="filled" /></z-icon>
+      </z-button>
+      <z-button icon type="primary">
+        <z-icon><airplay theme="filled" /></z-icon>
+      </z-button>
+      <z-button icon type="primary">
+        <z-icon> </z-icon>
+      </z-button>
+    </Showcase>
   </z-config-provider>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Home, Airplay } from '@icon-park/vue-next'
 
-import { ZEllipsis, ZButton, ZConfigProvider } from 'azi'
+import '@icon-park/vue-next/styles/index.css'
+
+import { ZEllipsis, ZButton, ZConfigProvider, ZIcon } from 'azi'
 import type { ConfigProviderProps } from 'azi'
 
 import Showcase from './component/Showcase.vue'
@@ -60,6 +83,11 @@ const config = ref<ConfigProviderProps>({
 <style>
 html {
   background-color: #f7f7f7;
+}
+
+html.dark {
+  background-color: #1e1e1e;
+  color: white;
 }
 </style>
 

@@ -3,7 +3,8 @@ import { bool, string } from 'vue-types'
 import classNames from 'classnames'
 import { useElementBounding, useDebounceFn } from '@vueuse/core'
 
-import { styles } from '../_util/'
+import { styles } from '../_util'
+import { wrapTextNode } from '../directive'
 
 import './index.css'
 
@@ -13,6 +14,7 @@ const props = {
   color: string(),
   tile: bool().def(false),
   circle: bool().def(false),
+  icon: bool().def(false),
   outlined: bool().def(false),
   text: bool().def(false),
   depressed: bool().def(false),
@@ -22,10 +24,16 @@ const props = {
 export type ButtonProps = ExtractPropTypes<typeof props>
 
 export default defineComponent({
+  directives: { wrap: wrapTextNode },
   props,
   setup(props, { slots }) {
     const el = ref<HTMLElement | null>(null)
-    const { width: buttonWidth, height: buttonHeight } = useElementBounding(el)
+    const {
+      width: buttonWidth,
+      height: buttonHeight,
+      left: buttonLeft,
+      top: buttonTop,
+    } = useElementBounding(el)
 
     const rippleSize = computed(() =>
       buttonWidth.value > buttonHeight.value
@@ -45,9 +53,11 @@ export default defineComponent({
     }, 1000)
 
     const handleMousedown = (e: MouseEvent) => {
+      const offsetX = e.clientX - buttonLeft.value,
+        offsetY = e.clientY - buttonTop.value
       rippleList.value.push({
-        left: e.offsetX - rippleSize.value / 2,
-        top: e.offsetY - rippleSize.value / 2,
+        left: offsetX - rippleSize.value / 2,
+        top: offsetY - rippleSize.value / 2,
       })
       clearRipple()
     }
@@ -77,15 +87,17 @@ export default defineComponent({
           value: type === 'custom',
         },
         {
-          fn() {
+          set() {
             this.color = this.backgroundColor
             this.backgroundColor = 'transparent'
           },
           value: props.outlined,
         },
         {
-          color: props.color,
-          backgroundColor: 'transparent',
+          set() {
+            this.color = props.color || this.backgroundColor
+            this.backgroundColor = 'transparent'
+          },
           value: props.text,
         }
       )
@@ -100,7 +112,7 @@ export default defineComponent({
         ref={el}
         style={style.value}
         class={classNames(
-          'btn',
+          'z-btn',
           'px-6 py-2',
           'relative',
           'rounded',
@@ -108,28 +120,32 @@ export default defineComponent({
           'overflow-hidden',
           'transition-shadow',
           'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
-          'active:after:opacity-20',
           {
             block: props.block,
+            '!p-4': props.icon,
+            'align-bottom': !props.block,
             'rounded-none': props.tile,
-            'rounded-full': props.circle,
+            'rounded-full': props.circle || props.icon,
             'border-transparent': !props.outlined,
             'border-solid': props.outlined,
             border: props.outlined,
             'opacity-60': props.disabled,
             'shadow-md': !depressed.value,
             'hover:shadow-lg': !depressed.value && !props.disabled,
-            'focus:after:opacity-10': depressed.value,
             'hover:after:opacity-5': !props.disabled,
+            'active:after:opacity-20': !props.disabled,
+            'focus:after:opacity-10': depressed.value,
           },
           {
-            outlined: props.outlined,
+            'z-color-reverse': props.outlined || props.text,
           }
         )}
         disabled={props.disabled}
         onMousedown={handleMousedown}
       >
-        {slots.default?.()}
+        <div v-wrap class={classNames('flex items-center', 'space-x-2')}>
+          {slots.default?.()}
+        </div>
         {rippleList.value.map(({ left, top }) => (
           <span
             style={styles({
@@ -140,12 +156,11 @@ export default defineComponent({
               transform: 'scale(0)',
             })}
             class={classNames(
-              'rippleEffect',
+              'z-ripple-effect',
               'absolute',
               'bg-current',
               'rounded-full',
-              'opacity-20',
-              'pointer-events-none'
+              'opacity-20'
             )}
           ></span>
         ))}

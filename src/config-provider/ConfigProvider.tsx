@@ -27,7 +27,7 @@ export default defineComponent({
     watch(props.theme, setCssVar)
 
     return () => (
-      <div ref={el} class="config-provider">
+      <div ref={el} class="z-config-provider">
         {slots.default?.()}
       </div>
     )
