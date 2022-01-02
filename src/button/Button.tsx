@@ -1,10 +1,9 @@
-import { computed, defineComponent, ExtractPropTypes, ref } from 'vue'
+import { computed, defineComponent, ExtractPropTypes } from 'vue'
 import { bool, string } from 'vue-types'
 import classNames from 'classnames'
-import { useElementBounding, useDebounceFn } from '@vueuse/core'
 
 import { styles } from '../_util'
-import { wrapTextNode } from '../directive'
+import { wrapTextNode, ripple } from '../directive'
 
 import './index.css'
 
@@ -24,44 +23,9 @@ const props = {
 export type ButtonProps = ExtractPropTypes<typeof props>
 
 export default defineComponent({
-  directives: { wrap: wrapTextNode },
+  directives: { wrap: wrapTextNode, ripple },
   props,
   setup(props, { slots }) {
-    const el = ref<HTMLElement | null>(null)
-    const {
-      width: buttonWidth,
-      height: buttonHeight,
-      left: buttonLeft,
-      top: buttonTop,
-    } = useElementBounding(el)
-
-    const rippleSize = computed(() =>
-      buttonWidth.value > buttonHeight.value
-        ? buttonWidth.value
-        : buttonHeight.value
-    )
-
-    const rippleList = ref<
-      Array<{
-        left: number
-        top: number
-      }>
-    >([])
-
-    const clearRipple = useDebounceFn(() => {
-      rippleList.value = []
-    }, 1000)
-
-    const handleMousedown = (e: MouseEvent) => {
-      const offsetX = e.clientX - buttonLeft.value,
-        offsetY = e.clientY - buttonTop.value
-      rippleList.value.push({
-        left: offsetX - rippleSize.value / 2,
-        top: offsetY - rippleSize.value / 2,
-      })
-      clearRipple()
-    }
-
     const style = computed(() => {
       const type = props.color ? 'custom' : props.type
       return styles(
@@ -109,7 +73,7 @@ export default defineComponent({
 
     return () => (
       <button
-        ref={el}
+        v-ripple
         style={style.value}
         class={classNames(
           'z-btn',
@@ -117,7 +81,6 @@ export default defineComponent({
           'relative',
           'rounded',
           'border-current',
-          'overflow-hidden',
           'transition-shadow',
           'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
           {
@@ -141,29 +104,10 @@ export default defineComponent({
           }
         )}
         disabled={props.disabled}
-        onMousedown={handleMousedown}
       >
         <div v-wrap class={classNames('flex items-center', 'space-x-2')}>
           {slots.default?.()}
         </div>
-        {rippleList.value.map(({ left, top }) => (
-          <span
-            style={styles({
-              width: rippleSize.value + 'px',
-              height: rippleSize.value + 'px',
-              left: left + 'px',
-              top: top + 'px',
-              transform: 'scale(0)',
-            })}
-            class={classNames(
-              'z-ripple-effect',
-              'absolute',
-              'bg-current',
-              'rounded-full',
-              'opacity-20'
-            )}
-          ></span>
-        ))}
       </button>
     )
   },

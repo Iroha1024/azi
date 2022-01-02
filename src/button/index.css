@@ -16,14 +16,3 @@
 .dark .z-btn.z-color-reverse {
   --z-bg-normal: #f0f0f0;
 }
-
-@keyframes ripple {
-  to {
-    transform: scale(3);
-    opacity: 0;
-  }
-}
-
-.z-ripple-effect {
-  animation: ripple 0.5s linear;
-}
