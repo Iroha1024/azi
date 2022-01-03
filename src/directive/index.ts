@@ -1,2 +1,2 @@
 export { ripple } from './ripple'
-export { wrapTextNode } from './wrapTextNode'
+export { space } from './space'

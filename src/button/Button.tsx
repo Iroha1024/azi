@@ -3,7 +3,7 @@ import { bool, string } from 'vue-types'
 import classNames from 'classnames'
 
 import { styles } from '../_util'
-import { wrapTextNode, ripple } from '../directive'
+import { space, ripple } from '../directive'
 
 import './index.css'
 
@@ -23,7 +23,7 @@ const props = {
 export type ButtonProps = ExtractPropTypes<typeof props>
 
 export default defineComponent({
-  directives: { wrap: wrapTextNode, ripple },
+  directives: { space, ripple },
   props,
   setup(props, { slots }) {
     const style = computed(() => {
@@ -105,7 +105,7 @@ export default defineComponent({
         )}
         disabled={props.disabled}
       >
-        <div v-wrap class={classNames('flex items-center', 'space-x-2')}>
+        <div v-space class={classNames('flex items-center')}>
           {slots.default?.()}
         </div>
       </button>
