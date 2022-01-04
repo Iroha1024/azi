@@ -4,6 +4,8 @@ const { promisify } = require('util')
 
 const exec = promisify(require('child_process').exec)
 
+const sass = require('sass')
+
 const readFile = async (dirPath, pathList = []) => {
   const dirent = await fs.readdir(dirPath, {
     encoding: 'utf-8',
@@ -26,8 +28,14 @@ const compile = (cssPath, output) =>
 ;(async () => {
   const fileList = await readFile(path.join(__dirname, '../src'))
   const cssList = fileList.filter((name) => name.endsWith('.css'))
-  for (const css of cssList) {
-    const output = css.replace('src', 'es')
-    await compile(css, output)
+  for (const file of cssList) {
+    const output = file.replace('src', 'es')
+    await compile(file, output)
+  }
+  const scssList = fileList.filter((name) => name.endsWith('.scss'))
+  for (const file of scssList) {
+    const output = file.replace('src', 'es').replace('scss', 'css')
+    const { css } = await sass.compileAsync(file)
+    await fs.writeFile(output, css, 'utf-8')
   }
 })()
