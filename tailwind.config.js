@@ -6,6 +6,9 @@ module.exports = {
       borderRadius: {
         inherit: 'inherit',
       },
+      lineHeight: {
+        0: '0'
+      },
     },
   },
   variants: {

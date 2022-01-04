@@ -5,6 +5,9 @@ import classNames from 'classnames'
 import { styles } from '../_util'
 import { space, ripple } from '../directive'
 
+import { ZIcon } from '../icon'
+import { ZLoading } from '../loading'
+
 import './index.css'
 
 const props = {
@@ -18,6 +21,7 @@ const props = {
   text: bool().def(false),
   depressed: bool().def(false),
   disabled: bool().def(false),
+  loading: bool().def(false),
 }
 
 export type ButtonProps = ExtractPropTypes<typeof props>
@@ -71,6 +75,8 @@ export default defineComponent({
       () => props.text || props.outlined || props.depressed
     )
 
+    const disabled = computed(() => props.disabled || props.loading)
+
     return () => (
       <button
         v-ripple
@@ -92,21 +98,31 @@ export default defineComponent({
             'border-transparent': !props.outlined,
             'border-solid': props.outlined,
             border: props.outlined,
-            'opacity-60': props.disabled,
+            'opacity-60': disabled.value,
             'shadow-md': !depressed.value,
-            'hover:shadow-lg': !depressed.value && !props.disabled,
-            'hover:after:opacity-5': !props.disabled,
-            'active:after:opacity-20': !props.disabled,
+            'hover:shadow-lg': !depressed.value && !disabled.value,
+            'hover:after:opacity-5': !disabled.value,
+            'active:after:opacity-20': !disabled.value,
             'focus:after:opacity-10': depressed.value,
           },
           {
             'z-color-reverse': props.outlined || props.text,
           }
         )}
-        disabled={props.disabled}
+        disabled={disabled.value}
       >
         <div v-space class={classNames('flex items-center')}>
-          {slots.default?.()}
+          {props.loading ? (
+            slots.loader ? (
+              slots.loader()
+            ) : (
+              <ZIcon>
+                <ZLoading></ZLoading>
+              </ZIcon>
+            )
+          ) : (
+            slots.default?.()
+          )}
         </div>
       </button>
     )

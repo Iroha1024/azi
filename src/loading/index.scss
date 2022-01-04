@@ -1,0 +1,36 @@
+$duration: 1.4s;
+$offset: 180;
+
+@keyframes z-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.z-loading {
+  animation: z-rotate $duration linear infinite;
+}
+
+@keyframes z-dash {
+  0% {
+    stroke-dashoffset: $offset;
+  }
+  50% {
+    stroke-dashoffset: calc($offset / 3);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform: rotate(450deg);
+  }
+}
+
+.z-loading-path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: z-dash $duration ease-in-out infinite;
+}

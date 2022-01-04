@@ -17,6 +17,7 @@ specifiers:
   postcss: ^8.4.5
   prettier: ^2.5.1
   rimraf: ^3.0.2
+  sass: ^1.45.2
   tailwindcss: ^3.0.7
   typescript: ^4.4.4
   vite: ^2.7.2
@@ -43,9 +44,10 @@ devDependencies:
   postcss: 8.4.5
   prettier: 2.5.1
   rimraf: 3.0.2
+  sass: 1.45.2
   tailwindcss: 3.0.7_16a290f6d0e3717bf6d2667234aebd30
   typescript: 4.5.4
-  vite: 2.7.6
+  vite: 2.7.6_sass@1.45.2
   vue: 3.2.26
 
 packages:
@@ -1324,7 +1326,7 @@ packages:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.7.6
+      vite: 2.7.6_sass@1.45.2
       vue: 3.2.26
     dev: true
 
@@ -1477,7 +1479,7 @@ packages:
     dev: true
 
   /acorn/7.4.1:
-    resolution: {integrity: sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=, tarball: acorn/download/acorn-7.4.1.tgz?cache=0&sync_timestamp=1637225784941&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Facorn%2Fdownload%2Facorn-7.4.1.tgz}
+    resolution: {integrity: sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=, tarball: acorn/download/acorn-7.4.1.tgz}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -2096,6 +2098,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /immutable/4.0.0:
+    resolution: {integrity: sha1-uG943mre82CDle+yaakUYnl+LCM=, tarball: immutable/download/immutable-4.0.0.tgz}
+    dev: true
+
   /import-cwd/3.0.0:
     resolution: {integrity: sha1-IIRVR3GAFRJuqbNna3WS+4vUz5I=, tarball: import-cwd/download/import-cwd-3.0.0.tgz}
     engines: {node: '>=8'}
@@ -2515,6 +2521,16 @@ packages:
     resolution: {integrity: sha1-mR7GnSluAxN0fVm9/St0XDX4go0=, tarball: safe-buffer/download/safe-buffer-5.1.2.tgz}
     dev: true
 
+  /sass/1.45.2:
+    resolution: {integrity: sha512-cKfs+F9AMPAFlbbTXNsbGvg3y58nV0mXA3E94jqaySKcC8Kq3/8983zVKQ0TLMUrHw7hF9Tnd3Bz9z5Xgtrl9g==, tarball: sass/download/sass-1.45.2.tgz}
+    engines: {node: '>=8.9.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.2
+      immutable: 4.0.0
+      source-map-js: 1.0.1
+    dev: true
+
   /semver/5.7.1:
     resolution: {integrity: sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=, tarball: semver/download/semver-5.7.1.tgz}
     hasBin: true
@@ -2671,7 +2687,7 @@ packages:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=, tarball: util-deprecate/download/util-deprecate-1.0.2.tgz}
     dev: true
 
-  /vite/2.7.6:
+  /vite/2.7.6_sass@1.45.2:
     resolution: {integrity: sha512-PBNoc87rDYLtkpFU9dbVeGdbcyKzz6c34oScqivE3FEa3BhVa4ASupCzcz0eDIiSECovfLcQnLUJt9vhiEU08g==, tarball: vite/download/vite-2.7.6.tgz}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -2691,6 +2707,7 @@ packages:
       postcss: 8.4.5
       resolve: 1.20.0
       rollup: 2.62.0
+      sass: 1.45.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: true

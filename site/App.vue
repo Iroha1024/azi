@@ -39,6 +39,9 @@
     <Showcase heading="禁用" content="disabled">
       <z-button disabled>禁用</z-button>
     </Showcase>
+    <Showcase heading="加载" content="loading">
+      <z-button :loading="loading" type="primary" @click="load">加载</z-button>
+    </Showcase>
     <Showcase heading="图标" content="size">
       <z-button>
         <div>HOME</div>
@@ -53,9 +56,6 @@
       </z-button>
       <z-button icon type="primary">
         <z-icon><airplay theme="filled" /></z-icon>
-      </z-button>
-      <z-button icon type="primary">
-        <z-icon> </z-icon>
       </z-button>
     </Showcase>
   </z-config-provider>
@@ -78,6 +78,15 @@ const config = ref<ConfigProviderProps>({
     // '--z-primary-color': 'red'
   },
 })
+
+const loading = ref(false)
+
+const load = () => {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 4000)
+}
 </script>
 
 <style>

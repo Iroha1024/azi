@@ -16,14 +16,16 @@ export default defineComponent({
     const style = computed(() =>
       styles({
         fontSize: props.size + 'px',
-        lineHeight: '0px',
         width: '1em',
         height: '1em',
       })
     )
 
     return () => (
-      <i style={style.value} class={classNames('inline-block', 'text-center')}>
+      <i
+        style={style.value}
+        class={classNames('inline-block', 'text-center', 'leading-0')}
+      >
         {slots.default?.()}
       </i>
     )
