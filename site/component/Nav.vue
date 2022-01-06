@@ -12,4 +12,10 @@ import { useDark, ZButton } from 'azi'
 const { isDark, toggleDark } = useDark()
 </script>
 
-<style scoped></style>
+<style scoped>
+nav {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+</style>
