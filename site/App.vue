@@ -67,7 +67,7 @@ import { Home, Airplay } from '@icon-park/vue-next'
 
 import '@icon-park/vue-next/styles/index.css'
 
-import { ZEllipsis, ZButton, ZConfigProvider, ZIcon } from 'azi'
+import { ZButton, ZConfigProvider, ZIcon } from 'azi'
 import type { ConfigProviderProps } from 'azi'
 
 import Showcase from './component/Showcase.vue'
