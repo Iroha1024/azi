@@ -1,0 +1,54 @@
+.z-checkbox {
+  --z-text: #353535;
+  color: var(--z-text);
+}
+
+.dark .z-checkbox {
+  --z-text: #f0f0f0;
+}
+
+@keyframes z-show-tick {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 50%;
+    height: 0;
+  }
+  75% {
+    width: 50%;
+    height: 75%;
+  }
+}
+
+.z-checked {
+  width: 50%;
+  height: 90%;
+  border-top: 0.1em solid currentColor;
+  border-right: 0.1em solid currentColor;
+  transform-origin: top left;
+  transform: translateY(0.45em) scaleY(-1) rotate(324deg);
+  animation: z-show-tick 0.4s linear;
+}
+
+.z-indeterminate {
+  width: 80%;
+  height: 20%;
+  background-color: currentColor;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.z-checkbox .z-checked,
+.z-checkbox .z-indeterminate {
+  --z-text: #f0f0f0;
+  color: var(--z-text);
+}
+
+.dark .z-checkbox .z-checked,
+.dark .z-checkbox .z-indeterminate {
+  --z-text: #353535;
+}

@@ -79,7 +79,7 @@ export default defineComponent({
 
     return () => (
       <button
-        v-ripple
+        v-ripple={disabled.value}
         style={style.value}
         class={classNames(
           'z-btn',
@@ -89,6 +89,7 @@ export default defineComponent({
           'border-current',
           'transition-shadow',
           'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
+          'focus:after:opacity-10',
           {
             block: props.block,
             '!p-4': props.icon,
@@ -103,7 +104,6 @@ export default defineComponent({
             'hover:shadow-lg': !depressed.value && !disabled.value,
             'hover:after:opacity-5': !disabled.value,
             'active:after:opacity-20': !disabled.value,
-            'focus:after:opacity-10': depressed.value,
           },
           {
             'z-color-reverse': props.outlined || props.text,

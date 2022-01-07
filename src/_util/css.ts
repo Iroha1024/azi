@@ -7,7 +7,7 @@ type Style = CSSProperties & {
 
 export const styles = (...args: Style[]) => {
   const call = (acc: Style, curr: Style) => {
-    curr.set?.call(acc)
+    curr.set!.call(acc)
     return acc
   }
   const merge = (acc: Style, curr: Style) => {

@@ -4,6 +4,6 @@
     "outDir": "../es",
     "emitDeclarationOnly": true,
     "declaration": true,
-    "composite": true
+    "rootDirs": ["./", "../src"]
   }
 }

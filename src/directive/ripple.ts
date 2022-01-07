@@ -52,10 +52,17 @@ const handleMousedown = (e: MouseEvent) => {
 const addClass = (el: HTMLElement) =>
   el.classList.add('relative', 'overflow-hidden')
 
-export const ripple: Directive<HTMLElement> = {
-  mounted(el) {
-    addClass(el)
+export const ripple: Directive<
+  HTMLElement,
+  {
+    disabled: boolean
+  }
+> = (el, binding) => {
+  const disabled = binding.value
+  addClass(el)
+  if (disabled) {
+    el.removeEventListener('mousedown', handleMousedown)
+  } else {
     el.addEventListener('mousedown', handleMousedown)
-  },
-  updated: addClass,
+  }
 }
