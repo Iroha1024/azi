@@ -1,45 +1,34 @@
 <template>
   <aside>
     <router-link
-      v-for="({ name, href, active }, index) in list"
-      :key="index"
-      :to="href"
+      v-for="{ name, path } in list"
+      :key="name"
+      :to="path"
       class="link"
-      :class="{
-        active: active,
-      }"
-      @click="activate(index)"
       >{{ name }}</router-link
     >
   </aside>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const { pathname } = location
+import { computed } from 'vue'
 
-const list = ref(
-  [
-    {
-      name: 'button',
-      href: '/button',
-    },
-    {
-      name: 'ellipsis',
-      href: '/ellipsis',
-    },
-  ].map((item) => {
-    ;(item as any).active = pathname === item.href
-    return item
-  }) as Array<{
-    name: string
-    href: string
-    active: boolean
-  }>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const list = computed(() =>
+  router
+    .getRoutes()
+    .filter(({ path }) => path !== '/')
+    .map(({ name, path }) => {
+      const obj = {
+        name,
+        path,
+      }
+      return obj
+    })
 )
-
-const activate = (index: number) =>
-  list.value.forEach((item, i) => (item.active = i == index))
 </script>
 
 <style scoped>
@@ -53,7 +42,7 @@ aside {
 }
 
 .link:hover,
-.link.active {
-  background-color: #e7e7e7;
+.link.router-link-active {
+  background-color: #00000052;
 }
 </style>

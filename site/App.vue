@@ -40,7 +40,7 @@ html {
 }
 
 html.dark {
-  background-color: #1e1e1e;
+  background-color: #272727;
   color: white;
 }
 </style>

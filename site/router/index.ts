@@ -4,10 +4,17 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     {
+      name: 'button',
       path: '/button',
       component: () => import('../component/Button.vue'),
     },
     {
+      name: 'checkbox',
+      path: '/checkbox',
+      component: () => import('../component/Checkbox.vue'),
+    },
+    {
+      name: 'ellipsis',
       path: '/ellipsis',
       component: () => import('../component/Ellipsis.vue'),
     },
