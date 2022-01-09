@@ -7,7 +7,10 @@ module.exports = {
         inherit: 'inherit',
       },
       lineHeight: {
-        0: '0'
+        0: '0',
+      },
+      transitionProperty: {
+        height: 'height',
       },
     },
   },
