@@ -14,6 +14,11 @@ export default createRouter({
       component: () => import('../component/Checkbox.vue'),
     },
     {
+      name: 'collapse',
+      path: '/collapse',
+      component: () => import('../component/Collapse.vue'),
+    },
+    {
       name: 'ellipsis',
       path: '/ellipsis',
       component: () => import('../component/Ellipsis.vue'),
