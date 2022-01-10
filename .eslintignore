@@ -4,6 +4,8 @@ es
 script
 .husky
 
+site/asset
+
 *.css
 *.scss
 *.html
