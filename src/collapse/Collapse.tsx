@@ -12,7 +12,7 @@ import { bool } from 'vue-types'
 import { useElementBounding, useVModels } from '@vueuse/core'
 
 import { CollapseGroupInjectionKey } from './Group'
-import { styles } from '../_util'
+import { useStyles } from '../shared'
 
 const props = {
   expanded: bool().def(false),
@@ -53,6 +53,11 @@ export default defineComponent({
     const el = ref<HTMLElement | null>(null)
     const { height } = useElementBounding(el)
 
+    const collapseContent = useStyles(() => ({
+      height: height.value + 'px',
+      value: expanded.value,
+    }))
+
     return () => (
       <div>
         <div onClick={handleClick}>
@@ -62,10 +67,7 @@ export default defineComponent({
         </div>
         {reRender.value ? null : (
           <div
-            style={styles({
-              height: height.value + 'px',
-              value: expanded.value,
-            })}
+            style={collapseContent.value}
             class={classNames('transition-height h-0 overflow-hidden')}
             onTransitionend={handleTransitionend}
           >

@@ -2,7 +2,7 @@ import { computed, defineComponent, ExtractPropTypes } from 'vue'
 import { bool, string } from 'vue-types'
 import classNames from 'classnames'
 
-import { styles } from '../_util'
+import { useStyles } from '../shared'
 import { space, ripple } from '../directive'
 
 import { ZIcon } from '../icon'
@@ -30,46 +30,44 @@ export default defineComponent({
   directives: { space, ripple },
   props,
   setup(props, { slots }) {
-    const style = computed(() => {
-      const type = props.color ? 'custom' : props.type
-      return styles(
-        {
-          color: 'var(--z-text-normal)',
-          backgroundColor: 'var(--z-bg-normal)',
-          value: type === 'normal',
+    const type = computed(() => (props.color ? 'custom' : props.type))
+    const button = useStyles(() => [
+      {
+        color: 'var(--z-text-normal)',
+        backgroundColor: 'var(--z-bg-normal)',
+        value: type.value === 'normal',
+      },
+      {
+        color: 'var(--z-text-not-normal)',
+        value: type.value !== 'normal',
+      },
+      {
+        backgroundColor: 'var(--z-primary-color)',
+        value: type.value === 'primary',
+      },
+      {
+        backgroundColor: 'var(--z-error-color)',
+        value: type.value === 'error',
+      },
+      {
+        backgroundColor: props.color,
+        value: type.value === 'custom',
+      },
+      {
+        set() {
+          this.color = this.backgroundColor
+          this.backgroundColor = 'transparent'
         },
-        {
-          color: 'var(--z-text-not-normal)',
-          value: type !== 'normal',
+        value: props.outlined,
+      },
+      {
+        set() {
+          this.color = props.color || this.backgroundColor
+          this.backgroundColor = 'transparent'
         },
-        {
-          backgroundColor: 'var(--z-primary-color)',
-          value: type === 'primary',
-        },
-        {
-          backgroundColor: 'var(--z-error-color)',
-          value: type === 'error',
-        },
-        {
-          backgroundColor: props.color,
-          value: type === 'custom',
-        },
-        {
-          set() {
-            this.color = this.backgroundColor
-            this.backgroundColor = 'transparent'
-          },
-          value: props.outlined,
-        },
-        {
-          set() {
-            this.color = props.color || this.backgroundColor
-            this.backgroundColor = 'transparent'
-          },
-          value: props.text,
-        }
-      )
-    })
+        value: props.text,
+      },
+    ])
 
     const depressed = computed(
       () => props.text || props.outlined || props.depressed
@@ -80,7 +78,7 @@ export default defineComponent({
     return () => (
       <button
         v-ripple={disabled.value}
-        style={style.value}
+        style={button.value}
         class={classNames(
           'z-btn',
           'px-6 py-2',

@@ -2,8 +2,6 @@ import { Directive } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import classNames from 'classnames'
 
-import { styles } from '../_util'
-
 const createRipple = (size: number, x: number, y: number) => {
   const ripple = document.createElement('div')
   ripple.className = classNames(
@@ -13,16 +11,13 @@ const createRipple = (size: number, x: number, y: number) => {
     'rounded-full',
     'opacity-20'
   )
-  Object.assign(
-    ripple.style,
-    styles({
-      width: size + 'px',
-      height: size + 'px',
-      left: x + 'px',
-      top: y + 'px',
-      transform: 'scale(0)',
-    })
-  )
+  Object.assign(ripple.style, {
+    width: size + 'px',
+    height: size + 'px',
+    left: x + 'px',
+    top: y + 'px',
+    transform: 'scale(0)',
+  })
   return ripple
 }
 

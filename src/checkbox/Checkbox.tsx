@@ -3,7 +3,7 @@ import { bool, number, oneOfType, string } from 'vue-types'
 import classNames from 'classnames'
 import { useVModels } from '@vueuse/core'
 
-import { styles } from '../_util'
+import { useStyles } from '../shared'
 import { ripple } from '../directive/ripple'
 
 import { checkboxGroupInjectionKey } from './Group'
@@ -28,6 +28,26 @@ export default defineComponent({
     const checked = computed(() =>
       checkboxGroup ? checkboxGroup.contains(props.value!) : props.checked
     )
+
+    const background = useStyles(() => [
+      {
+        width: '1em',
+        height: '1em',
+      },
+      {
+        backgroundColor: 'var(--z-primary-color)',
+        borderColor: 'var(--z-primary-color)',
+        value: checked.value || props.indeterminate,
+      },
+      {
+        borderColor: 'var(--z-disabled-color)',
+        value: props.disabled,
+      },
+      {
+        backgroundColor: 'var(--z-disabled-color)',
+        value: props.disabled && (checked.value || props.indeterminate),
+      },
+    ])
 
     const handleChange = () => {
       if (checkboxGroup) {
@@ -64,25 +84,7 @@ export default defineComponent({
           )}
         >
           <div
-            style={styles(
-              {
-                width: '1em',
-                height: '1em',
-              },
-              {
-                backgroundColor: 'var(--z-primary-color)',
-                borderColor: 'var(--z-primary-color)',
-                value: checked.value || props.indeterminate,
-              },
-              {
-                borderColor: 'var(--z-disabled-color)',
-                value: props.disabled,
-              },
-              {
-                backgroundColor: 'var(--z-disabled-color)',
-                value: props.disabled && (checked.value || props.indeterminate),
-              }
-            )}
+            style={background.value}
             class={classNames(
               'relative',
               'border-2 border-current border-solid',
