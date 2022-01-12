@@ -5,11 +5,12 @@ import {
   InjectionKey,
   provide,
 } from 'vue'
-import { array, oneOfType, string } from 'vue-types'
+import { arrayOf, oneOfType, string } from 'vue-types'
 import { useVModels } from '@vueuse/core'
 
 const props = {
-  active: oneOfType([string(), array<string>()]).isRequired,
+  active: oneOfType([string(), arrayOf(string())]).isRequired,
+  name: string(),
 }
 
 export type CollapseGroupProps = ExtractPropTypes<typeof props>

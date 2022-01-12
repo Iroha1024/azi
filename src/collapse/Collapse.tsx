@@ -4,19 +4,19 @@ import {
   ExtractPropTypes,
   getCurrentInstance,
   inject,
-  nextTick,
-  ref,
+  watch,
 } from 'vue'
 import classNames from 'classnames'
 import { bool } from 'vue-types'
-import { useElementBounding, useVModels } from '@vueuse/core'
+import { useVModels } from '@vueuse/core'
 
 import { CollapseGroupInjectionKey } from './Group'
-import { useStyles } from '../shared'
+
+import CollapseTransition from './CollapseTransition'
 
 const props = {
   expanded: bool().def(false),
-  forceRender: bool().def(false),
+  destroyInactive: bool().def(false),
 }
 
 export type CollapseProps = ExtractPropTypes<typeof props>
@@ -31,52 +31,53 @@ export default defineComponent({
       collapseGroup ? collapseGroup.contains(key!) : props.expanded
     )
 
-    const reRender = ref(true)
-
-    const handleClick = async (e: MouseEvent) => {
-      const trigger = (e.target as HTMLElement).hasAttribute('trigger')
-      if (!trigger) return
-      reRender.value = false
-      await nextTick()
-      setTimeout(() => {
-        if (collapseGroup) {
-          collapseGroup.setActiveKey(key!)
-        } else {
-          expandedModel.value = !expandedModel.value
-        }
-      })
+    const toggleExpand = () => {
+      if (collapseGroup) {
+        collapseGroup.setActiveKey(key!)
+      } else {
+        expandedModel.value = !expandedModel.value
+      }
     }
 
-    const handleTransitionend = () =>
-      props.forceRender && (reRender.value = !expanded.value)
+    let isMounted = false
 
-    const el = ref<HTMLElement | null>(null)
-    const { height } = useElementBounding(el)
-
-    const collapseContent = useStyles(() => ({
-      height: height.value + 'px',
-      value: expanded.value,
-    }))
-
-    return () => (
-      <div>
-        <div onClick={handleClick}>
-          {slots.header?.({
-            expanded: expanded.value,
-          })}
-        </div>
-        {reRender.value ? null : (
-          <div
-            style={collapseContent.value}
-            class={classNames('transition-height h-0 overflow-hidden')}
-            onTransitionend={handleTransitionend}
-          >
-            <div ref={el} class={classNames('p-4')}>
-              {slots.default?.()}
-            </div>
-          </div>
-        )}
-      </div>
+    const stop = watch(
+      expanded,
+      (v) => {
+        if (v) {
+          isMounted = true
+          stop()
+        }
+      },
+      { immediate: true }
     )
+
+    return () => {
+      const collapseContent = (
+        <div class={classNames('p-4')}>{slots.default?.()}</div>
+      )
+
+      return (
+        <div>
+          <div>
+            {slots.header?.({
+              expanded: expanded.value,
+              toggleExpand,
+            })}
+          </div>
+          <CollapseTransition>
+            {props.destroyInactive ? (
+              expanded.value ? (
+                <div>{collapseContent}</div>
+              ) : null
+            ) : (
+              <div v-show={expanded.value}>
+                {expanded.value || isMounted ? collapseContent : null}
+              </div>
+            )}
+          </CollapseTransition>
+        </div>
+      )
+    }
   },
 })
