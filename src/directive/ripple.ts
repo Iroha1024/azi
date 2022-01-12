@@ -1,5 +1,4 @@
 import { Directive } from 'vue'
-import { useDebounceFn } from '@vueuse/core'
 import classNames from 'classnames'
 
 const createRipple = (size: number, x: number, y: number) => {
@@ -21,7 +20,8 @@ const createRipple = (size: number, x: number, y: number) => {
   return ripple
 }
 
-const clearRipple = useDebounceFn((el: HTMLElement) => {
+const handleMouseleave = (e: MouseEvent) => {
+  const el = e.currentTarget as HTMLElement
   const list = el.children
   for (let i = list.length - 1; i >= 0; i--) {
     const child = list[i]
@@ -29,7 +29,7 @@ const clearRipple = useDebounceFn((el: HTMLElement) => {
       el.removeChild(child)
     }
   }
-}, 1000)
+}
 
 const handleMousedown = (e: MouseEvent) => {
   const el = e.currentTarget as HTMLElement
@@ -41,7 +41,6 @@ const handleMousedown = (e: MouseEvent) => {
     y = offsetY - size / 2
   const ripple = createRipple(size, x, y)
   el.appendChild(ripple)
-  clearRipple(el)
 }
 
 const addClass = (el: HTMLElement) =>
@@ -57,7 +56,9 @@ export const ripple: Directive<
   addClass(el)
   if (disabled) {
     el.removeEventListener('mousedown', handleMousedown)
+    el.removeEventListener('mouseleave', handleMouseleave)
   } else {
     el.addEventListener('mousedown', handleMousedown)
+    el.addEventListener('mouseleave', handleMouseleave)
   }
 }
