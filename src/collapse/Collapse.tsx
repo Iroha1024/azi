@@ -39,18 +39,16 @@ export default defineComponent({
       }
     }
 
-    let isMounted = false
+    let isMounted = expanded.value
 
-    const stop = watch(
-      expanded,
-      (v) => {
+    if (!isMounted) {
+      const stop = watch(expanded, (v) => {
         if (v) {
           isMounted = true
           stop()
         }
-      },
-      { immediate: true }
-    )
+      })
+    }
 
     return () => {
       const collapseContent = (

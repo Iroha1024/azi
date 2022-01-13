@@ -56,7 +56,7 @@ import { h, ref } from 'vue'
 import { ZCollapse, ZButton, ZCollapseGroup } from 'azi'
 
 const value = ref(false)
-const value2 = ref(false)
+const value2 = ref(true)
 
 const useCount = () => ({
   setup() {
