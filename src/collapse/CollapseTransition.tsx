@@ -7,10 +7,15 @@ export default defineComponent({
       Object.assign(el.style, {
         height: 0,
       })
+      void el.offsetHeight
     }
 
     const handleEnter = (el, done) => {
-      ;(el as HTMLElement).ontransitionend = () => done()
+      el.ontransitionend = (e) => {
+        if (e.currentTarget === e.target) {
+          done()
+        }
+      }
       const child = el.firstChild
       const { height } = child.getBoundingClientRect()
       Object.assign(el.style, {
@@ -19,7 +24,6 @@ export default defineComponent({
     }
 
     const handleAfterEnter = (el) => {
-      el.classList.remove('overflow-hidden')
       Object.assign(el.style, {
         height: '',
       })
@@ -32,14 +36,17 @@ export default defineComponent({
       Object.assign(el.style, {
         height: height + 'px',
       })
+      void el.offsetHeight
     }
 
     const handleLeave = (el, done) => {
-      ;(el as HTMLElement).ontransitionend = () => done()
-      setTimeout(() => {
-        Object.assign(el.style, {
-          height: 0,
-        })
+      el.ontransitionend = (e) => {
+        if (e.currentTarget === e.target) {
+          done()
+        }
+      }
+      Object.assign(el.style, {
+        height: 0,
       })
     }
 
