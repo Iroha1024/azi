@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import './index.scss'
+import './index.css'
 
 export default defineComponent({
   setup() {

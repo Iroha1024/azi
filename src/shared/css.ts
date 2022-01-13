@@ -1,11 +1,19 @@
 import { computed, ComputedRef, CSSProperties } from 'vue'
 
 import { hasOwnProperty, isObject } from './common'
+import type { VarCase, Theme, ThemePreix, VarCaseObject } from '../style'
+import type { Spread } from './type'
 
-type Style = CSSProperties & {
-  set?: (this: Style) => void
-  value?: boolean
-}
+type Style = Spread<
+  [
+    CSSProperties,
+    Partial<VarCaseObject<Theme>>,
+    {
+      set?: (this: Style) => void
+      value?: boolean
+    }
+  ]
+>
 
 type MaybeArray<T> = T | Array<T>
 type FnReturn<R> = () => R
@@ -15,10 +23,12 @@ type MixStyle = { [name: string]: MaybeArray<Style> }
 function useStyle<O extends MaybeArray<Style>>(
   valueFn: FnReturn<O>
 ): ComputedRef<Omit<Style, 'set' | 'value'>>
+
 function useStyle<O extends MixStyle>(
   valueFn: FnReturn<O>,
   key: string
 ): ComputedRef<Omit<Style, 'set' | 'value'>>
+
 function useStyle(
   valueFn: FnReturn<MixStyle> | FnReturn<MaybeArray<Style>>,
   key?: string
@@ -92,3 +102,7 @@ export function useStyles(
     return obj
   }
 }
+
+export const cssVar = <T extends Record<string, string> = Theme>(
+  str: ThemePreix<VarCase<Extract<keyof Spread<[Theme, T]>, string>>>
+): `var(${typeof str})` => `var(${str})`

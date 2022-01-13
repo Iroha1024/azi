@@ -3,7 +3,7 @@ import { bool, number, oneOfType, string } from 'vue-types'
 import classNames from 'classnames'
 import { useVModels } from '@vueuse/core'
 
-import { useStyles } from '../shared'
+import { cssVar, useStyles } from '../shared'
 import { ripple } from '../directive/ripple'
 
 import { checkboxGroupInjectionKey } from './Group'
@@ -35,16 +35,16 @@ export default defineComponent({
         height: '1em',
       },
       {
-        backgroundColor: 'var(--z-primary-color)',
-        borderColor: 'var(--z-primary-color)',
+        backgroundColor: cssVar('--z-primary-color'),
+        borderColor: cssVar('--z-primary-color'),
         value: checked.value || props.indeterminate,
       },
       {
-        borderColor: 'var(--z-disabled-color)',
+        borderColor: cssVar('--z-disabled-color'),
         value: props.disabled,
       },
       {
-        backgroundColor: 'var(--z-disabled-color)',
+        backgroundColor: cssVar('--z-disabled-color'),
         value: props.disabled && (checked.value || props.indeterminate),
       },
     ])

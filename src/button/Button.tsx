@@ -2,7 +2,7 @@ import { computed, defineComponent, ExtractPropTypes } from 'vue'
 import { bool, string } from 'vue-types'
 import classNames from 'classnames'
 
-import { useStyles } from '../shared'
+import { cssVar, useStyles } from '../shared'
 import { space, ripple } from '../directive'
 
 import { ZIcon } from '../icon'
@@ -42,11 +42,11 @@ export default defineComponent({
         value: type.value !== 'normal',
       },
       {
-        backgroundColor: 'var(--z-primary-color)',
+        backgroundColor: cssVar('--z-primary-color'),
         value: type.value === 'primary',
       },
       {
-        backgroundColor: 'var(--z-error-color)',
+        backgroundColor: cssVar('--z-error-color'),
         value: type.value === 'error',
       },
       {

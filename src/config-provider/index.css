@@ -1,5 +1,0 @@
-.z-config-provider {
-  --z-primary-color: theme('colors.violet.500');
-  --z-error-color: theme('colors.red.500');
-  --z-disabled-color: theme('colors.gray.400');
-}

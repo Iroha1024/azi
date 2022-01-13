@@ -1,6 +1,3 @@
-$duration: 1.4s;
-$offset: 180;
-
 @keyframes z-rotate {
   0% {
     transform: rotate(0deg);
@@ -11,26 +8,28 @@ $offset: 180;
 }
 
 .z-loading {
-  animation: z-rotate $duration linear infinite;
+  --duration: 1.4s;
+  --offset: 180;
+  animation: z-rotate var(--duration) linear infinite;
 }
 
 @keyframes z-dash {
   0% {
-    stroke-dashoffset: $offset;
+    stroke-dashoffset: var(--offset);
   }
   50% {
-    stroke-dashoffset: calc($offset / 3);
+    stroke-dashoffset: var(--offset) / 3;
     transform: rotate(135deg);
   }
   100% {
-    stroke-dashoffset: $offset;
+    stroke-dashoffset: var(--offset);
     transform: rotate(450deg);
   }
 }
 
 .z-loading-path {
-  stroke-dasharray: $offset;
+  stroke-dasharray: var(--offset);
   stroke-dashoffset: 0;
   transform-origin: center;
-  animation: z-dash $duration ease-in-out infinite;
+  animation: z-dash var(--duration) ease-in-out infinite;
 }
