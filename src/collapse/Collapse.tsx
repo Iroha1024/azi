@@ -12,7 +12,7 @@ import { useVModels } from '@vueuse/core'
 
 import { CollapseGroupInjectionKey } from './Group'
 
-import CollapseTransition from './CollapseTransition'
+import CollapseTransition from './Transition'
 
 const props = {
   expanded: bool().def(false),
