@@ -1,9 +1,9 @@
-import { computed, defineComponent, ExtractPropTypes } from 'vue'
+import { computed, defineComponent } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { bool, string } from 'vue-types'
-import classNames from 'classnames'
 
-import { cssVar, useStyles } from '../shared'
 import { space, ripple } from '../directive'
+import { ClassName, injectClass, injectStyle } from './style'
 
 import { ZIcon } from '../icon'
 import { ZLoading } from '../loading'
@@ -31,43 +31,6 @@ export default defineComponent({
   props,
   setup(props, { slots }) {
     const type = computed(() => (props.color ? 'custom' : props.type))
-    const button = useStyles(() => [
-      {
-        color: 'var(--z-text-normal)',
-        backgroundColor: 'var(--z-bg-normal)',
-        value: type.value === 'normal',
-      },
-      {
-        color: 'var(--z-text-not-normal)',
-        value: type.value !== 'normal',
-      },
-      {
-        backgroundColor: cssVar('--z-primary-color'),
-        value: type.value === 'primary',
-      },
-      {
-        backgroundColor: cssVar('--z-error-color'),
-        value: type.value === 'error',
-      },
-      {
-        backgroundColor: props.color,
-        value: type.value === 'custom',
-      },
-      {
-        set() {
-          this.color = this.backgroundColor
-          this.backgroundColor = 'transparent'
-        },
-        value: props.outlined,
-      },
-      {
-        set() {
-          this.color = props.color || this.backgroundColor
-          this.backgroundColor = 'transparent'
-        },
-        value: props.text,
-      },
-    ])
 
     const depressed = computed(
       () => props.text || props.outlined || props.depressed
@@ -75,41 +38,16 @@ export default defineComponent({
 
     const disabled = computed(() => props.disabled || props.loading)
 
+    injectStyle({ props, type })
+    injectClass({ props, disabled, depressed })
+
     return () => (
       <button
+        class={ClassName.button}
         v-ripple={disabled.value}
-        style={button.value}
-        class={classNames(
-          'z-btn',
-          'px-6 py-2',
-          'relative',
-          'rounded',
-          'border-current',
-          'transition-shadow',
-          'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
-          'focus:after:opacity-10',
-          {
-            block: props.block,
-            '!p-4': props.icon,
-            'align-bottom': !props.block,
-            'rounded-none': props.tile,
-            'rounded-full': props.circle || props.icon,
-            'border-transparent': !props.outlined,
-            'border-solid': props.outlined,
-            border: props.outlined,
-            'opacity-60': disabled.value,
-            'shadow-md': !depressed.value,
-            'hover:shadow-lg': !depressed.value && !disabled.value,
-            'hover:after:opacity-5': !disabled.value,
-            'active:after:opacity-20': !disabled.value,
-          },
-          {
-            'z-color-reverse': props.outlined || props.text,
-          }
-        )}
         disabled={disabled.value}
       >
-        <div v-space class={classNames('flex items-center')}>
+        <div v-space class={ClassName.buttonContent}>
           {props.loading ? (
             slots.loader ? (
               slots.loader()

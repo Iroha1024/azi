@@ -24,3 +24,5 @@ export type Spread<A extends readonly [...any]> = A extends [
 ]
   ? SpreadTwo<L, Spread<R>>
   : unknown
+
+export type MaybeArray<T> = T | Array<T>

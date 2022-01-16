@@ -1,18 +1,18 @@
 import {
   computed,
   defineComponent,
-  ExtractPropTypes,
   getCurrentInstance,
   inject,
   watch,
 } from 'vue'
-import classNames from 'classnames'
+import type { ExtractPropTypes } from 'vue'
 import { bool } from 'vue-types'
 import { useVModels } from '@vueuse/core'
 
 import { CollapseGroupInjectionKey } from './Group'
 
 import CollapseTransition from './Transition'
+import { ClassName, injectClass } from './style'
 
 const props = {
   expanded: bool().def(false),
@@ -30,6 +30,8 @@ export default defineComponent({
     const expanded = computed(() =>
       collapseGroup ? collapseGroup.contains(key!) : props.expanded
     )
+
+    injectClass()
 
     const toggleExpand = () => {
       if (collapseGroup) {
@@ -52,7 +54,7 @@ export default defineComponent({
 
     return () => {
       const collapseContent = (
-        <div class={classNames('p-4')}>{slots.default?.()}</div>
+        <div class={ClassName.collapseContent}>{slots.default?.()}</div>
       )
 
       return (
