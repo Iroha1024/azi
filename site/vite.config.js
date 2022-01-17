@@ -7,7 +7,16 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [vueJsx(), vue()],
+  plugins: [
+    vueJsx({
+      mergeProps: false,
+      enableObjectSlots: false,
+      babelPlugins: [
+        path.join(__dirname, '../plugin/babel-auto-bind-style/index.js'),
+      ],
+    }),
+    vue(),
+  ],
   build: {
     outDir: '../dist',
   },

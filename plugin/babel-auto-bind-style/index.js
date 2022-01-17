@@ -4,7 +4,8 @@ module.exports = function ({ types: t }) {
       this.hasStyle = /injectStyle/.test(state.code)
       this.hasClass = /injectClass/.test(state.code)
       this.ready =
-        state.opts.filename.endsWith('.tsx') && (this.hasStyle || this.hasClass)
+        state.opts.sourceFileName.endsWith('.tsx') &&
+        (this.hasStyle || this.hasClass)
     },
     visitor: {
       Program(path) {
