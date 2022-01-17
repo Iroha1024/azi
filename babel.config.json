@@ -16,6 +16,7 @@
         "enableObjectSlots": false
       }
     ],
+    ["./plugin/babel-auto-bind-style"],
     [
       "transform-rename-import",
       { "original": "^(.+?)\\.scss$", "replacement": "$1.css" }

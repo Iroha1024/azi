@@ -2,6 +2,7 @@ node_modules
 dist
 es
 script
+plugin
 .husky
 
 site/asset
