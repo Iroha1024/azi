@@ -5,16 +5,11 @@ import type { Spread, MaybeArray } from './type'
 import { hasOwnProperty } from './common'
 import { prefix } from '../style'
 
-type Style = Spread<
-  [
-    CSSProperties,
-    Partial<PrefixCaseObject<Theme>>,
-    {
-      set?: (this: Style) => void
-      value?: boolean
-    }
-  ]
->
+type Style = CSSProperties &
+  Partial<PrefixCaseObject<Theme>> & {
+    set?: (this: Style) => void
+    value?: boolean
+  }
 
 export const style = (
   value: MaybeArray<Style>
