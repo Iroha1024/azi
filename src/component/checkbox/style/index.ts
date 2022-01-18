@@ -1,5 +1,5 @@
-import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import classNames from 'classnames'
 
 import type { CheckboxProps } from '../Checkbox'

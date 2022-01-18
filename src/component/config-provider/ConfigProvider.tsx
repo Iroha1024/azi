@@ -1,4 +1,5 @@
-import { defineComponent, ExtractPropTypes } from 'vue'
+import { defineComponent } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { object } from 'vue-types'
 
 import type { Theme } from '../../style'

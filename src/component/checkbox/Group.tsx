@@ -1,4 +1,5 @@
-import { defineComponent, ExtractPropTypes, InjectionKey, provide } from 'vue'
+import { defineComponent, InjectionKey, provide } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { arrayOf, number, oneOfType, string } from 'vue-types'
 import { useVModels } from '@vueuse/core'
 
