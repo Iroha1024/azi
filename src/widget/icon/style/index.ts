@@ -1,5 +1,5 @@
 import type { IconProps } from '../Icon'
-import { style } from '../../shared'
+import { style } from '../../../shared'
 import { computed } from 'vue'
 import classNames from 'classnames'
 

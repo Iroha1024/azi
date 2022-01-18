@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
 import type { EllipsisProps } from '../Ellipsis'
-import { style } from '../../shared'
+import { style } from '../../../shared'
 
 export const ClassName = {
   ellipsis: 'ellipsis',

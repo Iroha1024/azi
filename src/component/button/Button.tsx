@@ -2,11 +2,10 @@ import { computed, defineComponent } from 'vue'
 import type { ExtractPropTypes } from 'vue'
 import { bool, string } from 'vue-types'
 
-import { space, ripple } from '../directive'
+import { space, ripple } from '../../directive'
 import { ClassName, injectClass, injectStyle } from './style'
 
-import { ZIcon } from '../icon'
-import { ZLoading } from '../loading'
+import { ZIcon, ZLoading } from '../../widget'
 
 const props = {
   type: string<'normal' | 'primary' | 'error'>().def('normal'),

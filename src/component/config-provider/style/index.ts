@@ -1,6 +1,6 @@
 import type { ConfigProviderProps } from '../ConfigProvider'
-import { theme } from '../../style'
-import { prefixCaseObject, style } from '../../shared'
+import { theme } from '../../../style'
+import { prefixCaseObject, style } from '../../../shared'
 import { computed } from 'vue'
 import classNames from 'classnames'
 

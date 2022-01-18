@@ -20,7 +20,7 @@ module.exports = function ({ types: t }) {
           )
         }
         addImport('_unref', 'unref', 'vue')
-        addImport('_prefixCase', 'prefixCase', '../shared')
+        addImport('_prefixCase', 'prefixCase', '../../shared')
       },
       ExpressionStatement(path) {
         if (!this.ready) return

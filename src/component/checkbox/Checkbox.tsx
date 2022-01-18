@@ -3,7 +3,7 @@ import type { ExtractPropTypes } from 'vue'
 import { bool, number, oneOfType, string } from 'vue-types'
 import { useVModels } from '@vueuse/core'
 
-import { ripple } from '../directive/ripple'
+import { ripple } from '../../directive/ripple'
 
 import { checkboxGroupInjectionKey } from './Group'
 import { ClassName, injectStyle, injectClass } from './style'

@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import classNames from 'classnames'
 
 import type { ButtonProps } from '../Button'
-import { cssVar, style } from '../../shared'
+import { cssVar, style } from '../../../shared'
 
 export const ClassName = {
   button: 'button',

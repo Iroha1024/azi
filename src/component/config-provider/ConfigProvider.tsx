@@ -1,7 +1,7 @@
 import { defineComponent, ExtractPropTypes } from 'vue'
 import { object } from 'vue-types'
 
-import type { Theme } from '../style'
+import type { Theme } from '../../style'
 import { injectStyle, ClassName, injectClass } from './style'
 
 const props = {

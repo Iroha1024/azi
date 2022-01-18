@@ -3,8 +3,8 @@ import { computed } from 'vue'
 import classNames from 'classnames'
 
 import type { CheckboxProps } from '../Checkbox'
-import { cssVar, style } from '../../shared'
-import { absoluteCenter } from '../../style'
+import { cssVar, style } from '../../../shared'
+import { absoluteCenter } from '../../../style'
 
 export const ClassName = {
   checkbox: 'checkbox',

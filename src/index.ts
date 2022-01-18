@@ -1,9 +1,4 @@
-export * from './button'
-export * from './checkbox'
-export * from './collapse'
-export * from './config-provider'
-export * from './ellipsis'
-export * from './icon'
-
-export * from './util'
+export * from './component'
+export * from './widget'
 export * from './directive'
+export * from './util'
