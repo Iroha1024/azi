@@ -18,8 +18,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import '@icon-park/vue-next/styles/index.css'
-
 import { ZConfigProvider } from 'azi'
 import type { ConfigProviderProps } from 'azi'
 
@@ -41,7 +39,6 @@ html {
 
 html.dark {
   background-color: #272727;
-  color: white;
 }
 </style>
 

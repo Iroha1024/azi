@@ -1,6 +1,10 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
-    "rootDirs": ["./"]
+    "baseUrl": "./",
+    "paths": {
+      "azi": ["../src/index.ts"],
+      "azi/*": ["../src/*"]
+    }
   }
 }

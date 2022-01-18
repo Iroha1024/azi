@@ -22,7 +22,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      azi: path.join(__dirname, '../src/index.ts'),
+      azi: path.join(__dirname, '../src'),
     },
   },
 })

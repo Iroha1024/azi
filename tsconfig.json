@@ -8,9 +8,5 @@
     "esModuleInterop": true,
     "noImplicitAny": false,
     "jsx": "preserve",
-    "baseUrl": "./",
-    "paths": {
-      "azi": ["src/index.ts"]
-    }
   }
 }
