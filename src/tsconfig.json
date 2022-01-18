@@ -1,9 +1,8 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
-    "outDir": "../es",
+    "outDir": "../es"
     // "emitDeclarationOnly": true,
     // "declaration": true,
-    "rootDirs": ["./", "../src"]
   }
 }

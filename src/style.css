@@ -12,3 +12,60 @@
 .z-ripple-effect {
   animation: z-ripple 0.6s linear;
 }
+
+@keyframes z-show-tick {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  40% {
+    width: 50%;
+    height: 0;
+  }
+}
+
+.z-checked {
+  width: 50%;
+  height: 90%;
+  border-top: 0.1em solid currentColor;
+  border-right: 0.1em solid currentColor;
+  transform-origin: top left;
+  transform: translateY(0.45em) scaleY(-1) rotate(324deg);
+  animation: z-show-tick 0.4s linear;
+}
+
+@keyframes z-loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.z-loading {
+  --duration: 1.4s;
+  --offset: 180;
+  animation: z-loading-rotate var(--duration) linear infinite;
+}
+
+@keyframes z-loading-dash {
+  0% {
+    stroke-dashoffset: var(--offset);
+  }
+  50% {
+    stroke-dashoffset: var(--offset) / 3;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: var(--offset);
+    transform: rotate(450deg);
+  }
+}
+
+.z-loading-path {
+  stroke-dasharray: var(--offset);
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: z-loading-dash var(--duration) ease-in-out infinite;
+}

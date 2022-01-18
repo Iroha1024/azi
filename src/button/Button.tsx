@@ -8,8 +8,6 @@ import { ClassName, injectClass, injectStyle } from './style'
 import { ZIcon } from '../icon'
 import { ZLoading } from '../loading'
 
-import './index.css'
-
 const props = {
   type: string<'normal' | 'primary' | 'error'>().def('normal'),
   block: bool().def(false),

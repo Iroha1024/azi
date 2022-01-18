@@ -1,5 +1,3 @@
-import './style.css'
-
 export * from './button'
 export * from './checkbox'
 export * from './collapse'

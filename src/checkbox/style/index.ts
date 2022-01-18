@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import type { CheckboxProps } from '../Checkbox'
 import { cssVar, style } from '../../shared'
+import { absoluteCenter } from '../../style'
 
 export const ClassName = {
   checkbox: 'checkbox',
@@ -79,10 +80,15 @@ export const injectClass = ({
       classNames('relative', 'border-2 border-current border-solid', 'rounded')
     ),
     [ClassName.checkboxStatus]: computed(() =>
-      classNames({
-        'z-checked': checked.value,
-        'z-indeterminate': !checked.value && props.indeterminate,
-      })
+      classNames(
+        'text-[color:var(--z-font-white-color)]',
+        'dark:text-[color:var(--z-font-black-color)]',
+        {
+          'z-checked': checked.value,
+          [`${absoluteCenter} bg-current w-4/5 h-1/5`]:
+            !checked.value && props.indeterminate,
+        }
+      )
     ),
     [ClassName.checkboxText]: computed(() =>
       classNames(

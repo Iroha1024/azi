@@ -8,8 +8,6 @@ import { ripple } from '../directive/ripple'
 import { checkboxGroupInjectionKey } from './Group'
 import { ClassName, injectStyle, injectClass } from './style'
 
-import './index.css'
-
 const props = {
   checked: bool().def(false),
   indeterminate: bool().def(false),

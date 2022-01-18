@@ -21,12 +21,7 @@ export const injectStyle = ({
     [ClassName.button]: computed(() =>
       style([
         {
-          color: 'var(--z-text-normal)',
-          backgroundColor: 'var(--z-bg-normal)',
-          value: type.value === 'normal',
-        },
-        {
-          color: 'var(--z-text-not-normal)',
+          color: cssVar('--z-font-white-color'),
           value: type.value !== 'normal',
         },
         {
@@ -84,7 +79,7 @@ export const injectClass = ({
           '!p-4': props.icon,
           'align-bottom': !props.block,
           'rounded-none': props.tile,
-          'rounded-full': props.circle || props.icon,
+          '!rounded-full': props.circle || props.icon,
           'border-transparent': !props.outlined,
           'border-solid': props.outlined,
           border: props.outlined,
