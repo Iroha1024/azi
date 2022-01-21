@@ -4,7 +4,14 @@ import classNames from 'classnames'
 
 import type { CheckboxProps } from '../Checkbox'
 import { cssVar, style } from '../../../shared'
-import { absoluteCenter } from '../../../style'
+import {
+  absoluteCenter,
+  absoluteHidden,
+  interactiveElement,
+  interactivePseudoElement,
+  relative,
+  sizeX1,
+} from '../../../style'
 
 export const ClassName = {
   checkbox: 'checkbox',
@@ -25,10 +32,6 @@ export const injectStyle = ({
   return {
     [ClassName.checkboxCheckedBackground]: computed(() =>
       style([
-        {
-          width: '1em',
-          height: '1em',
-        },
         {
           backgroundColor: cssVar('--z-primary-color'),
           borderColor: cssVar('--z-primary-color'),
@@ -56,28 +59,26 @@ export const injectClass = ({
 }) => {
   return {
     [ClassName.checkbox]: computed(() =>
-      classNames('inline-flex items-center', {
-        'opacity-60': props.disabled,
-      })
+      classNames('inline-flex items-center', interactiveElement(props.disabled))
     ),
     [ClassName.checkboxInput]: computed(() =>
-      classNames('absolute', 'scale-0', 'peer')
+      classNames(absoluteHidden, 'peer')
     ),
     [ClassName.checkboxRipple]: computed(() =>
       classNames(
+        relative,
         'p-2.5',
         'rounded-full',
-        'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
-        'peer-focus:after:opacity-10',
-        props.disabled ? 'cursor-auto' : 'cursor-pointer',
-        {
-          'hover:after:opacity-5': !props.disabled,
-          'active:after:opacity-20': !props.disabled,
-        }
+        interactivePseudoElement(props.disabled)
       )
     ),
     [ClassName.checkboxCheckedBackground]: computed(() =>
-      classNames('relative', 'border-2 border-current border-solid', 'rounded')
+      classNames(
+        relative,
+        sizeX1,
+        'border-2 border-current border-solid',
+        'rounded'
+      )
     ),
     [ClassName.checkboxStatus]: computed(() =>
       classNames(
@@ -90,12 +91,6 @@ export const injectClass = ({
         }
       )
     ),
-    [ClassName.checkboxText]: computed(() =>
-      classNames(
-        'select-none',
-        'pr-2',
-        props.disabled ? 'cursor-auto' : 'cursor-pointer'
-      )
-    ),
+    [ClassName.checkboxText]: computed(() => classNames('pr-2')),
   }
 }

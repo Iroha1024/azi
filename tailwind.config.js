@@ -12,6 +12,12 @@ module.exports = {
       transitionProperty: {
         height: 'height',
       },
+      width: {
+        x1: '1em',
+      },
+      height: {
+        x1: '1em',
+      },
     },
   },
   variants: {

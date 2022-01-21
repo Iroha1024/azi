@@ -4,6 +4,11 @@ import classNames from 'classnames'
 
 import type { ButtonProps } from '../Button'
 import { cssVar, style } from '../../../shared'
+import {
+  interactiveElement,
+  interactivePseudoElement,
+  relative,
+} from '../../../style'
 
 export const ClassName = {
   button: 'button',
@@ -67,13 +72,13 @@ export const injectClass = ({
   return {
     [ClassName.button]: computed(() =>
       classNames(
+        relative,
         'px-6 py-2',
-        'relative',
         'rounded',
         'border-current',
         'transition-shadow',
-        'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
-        'focus:after:opacity-10',
+        interactiveElement(disabled.value),
+        interactivePseudoElement(disabled.value),
         {
           block: props.block,
           '!p-4': props.icon,
@@ -83,14 +88,8 @@ export const injectClass = ({
           'border-transparent': !props.outlined,
           'border-solid': props.outlined,
           border: props.outlined,
-          'opacity-60': disabled.value,
           'shadow-md': !depressed.value,
           'hover:shadow-lg': !depressed.value && !disabled.value,
-          'hover:after:opacity-5': !disabled.value,
-          'active:after:opacity-20': !disabled.value,
-        },
-        {
-          'z-color-reverse': props.outlined || props.text,
         }
       )
     ),
