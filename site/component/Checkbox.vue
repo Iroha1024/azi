@@ -1,7 +1,7 @@
 <template>
   <z-checkbox
     v-model:checked="checked1"
-    v-model:indeterminate="indeterminate"
+    :indeterminate="indeterminate"
     :disabled="disabled"
     >checkbox1 {{ checked1 }}</z-checkbox
   >
