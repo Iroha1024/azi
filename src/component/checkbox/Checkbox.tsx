@@ -31,6 +31,7 @@ export default defineComponent({
     injectClass({ props, checked })
 
     const handleChange = () => {
+      if (props.disabled) return
       if (checkboxGroup) {
         checkboxGroup.toggleCheckbox(props.value!)
       } else {
@@ -44,6 +45,7 @@ export default defineComponent({
           class={ClassName.checkboxInput}
           type="checkbox"
           disabled={props.disabled}
+          checked={checked.value}
           onChange={handleChange}
         ></input>
         <div class={ClassName.checkboxRipple} v-ripple={props.disabled}>

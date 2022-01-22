@@ -33,17 +33,16 @@ export const injectStyle = ({
     [ClassName.checkboxCheckedBackground]: computed(() =>
       style([
         {
-          backgroundColor: cssVar('--z-primary-color'),
-          borderColor: cssVar('--z-primary-color'),
+          backgroundColor: 'transparent',
+          value: !(checked.value || props.indeterminate),
+        },
+        {
+          color: cssVar('--z-primary-color'),
           value: checked.value || props.indeterminate,
         },
         {
-          borderColor: cssVar('--z-disabled-color'),
+          color: cssVar('--z-disabled-color'),
           value: props.disabled,
-        },
-        {
-          backgroundColor: cssVar('--z-disabled-color'),
-          value: props.disabled && (checked.value || props.indeterminate),
         },
       ])
     ),
@@ -77,7 +76,8 @@ export const injectClass = ({
         relative,
         sizeX1,
         'border-2 border-current border-solid',
-        'rounded'
+        'rounded',
+        'bg-current'
       )
     ),
     [ClassName.checkboxStatus]: computed(() =>
