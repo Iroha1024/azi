@@ -11,14 +11,9 @@ export const sizeX1 = 'w-x1 h-x1'
 
 export const interactivePseudoElement = (
   disabled: boolean,
-  {
-    groupHover,
-    groupFocus,
-    peerFocus,
-  }: { groupHover?: boolean; groupFocus?: boolean; peerFocus?: boolean } = {
+  { groupHover, groupFocus }: { groupHover?: boolean; groupFocus?: boolean } = {
     groupHover: false,
     groupFocus: false,
-    peerFocus: false,
   }
 ) =>
   classNames(
@@ -29,7 +24,6 @@ export const interactivePseudoElement = (
       'active:after:opacity-30': !disabled,
       'focus:after:opacity-20': !disabled,
       'group-focus:after:opacity-20': groupFocus && !disabled,
-      'peer-focus:after:opacity-20': peerFocus && !disabled,
     }
   )
 

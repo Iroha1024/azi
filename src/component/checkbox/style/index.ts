@@ -60,9 +60,7 @@ export const injectClass = ({
     [ClassName.checkbox]: computed(() =>
       classNames('inline-flex items-center', interactiveElement(props.disabled))
     ),
-    [ClassName.checkboxInput]: computed(() =>
-      classNames(absoluteHidden, 'peer')
-    ),
+    [ClassName.checkboxInput]: computed(() => classNames(absoluteHidden)),
     [ClassName.checkboxRipple]: computed(() =>
       classNames(
         relative,

@@ -56,7 +56,7 @@ export const injectClass = ({
     [ClassName.radio]: computed(() =>
       classNames('inline-flex items-center', interactiveElement(props.disabled))
     ),
-    [ClassName.radioInput]: computed(() => classNames(absoluteHidden, 'peer')),
+    [ClassName.radioInput]: computed(() => classNames(absoluteHidden)),
     [ClassName.radioRipple]: computed(() =>
       classNames(
         relative,
