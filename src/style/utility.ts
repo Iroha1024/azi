@@ -7,7 +7,7 @@ export const absoluteHidden = 'absolute scale-0'
 
 export const relative = 'relative'
 
-export const sizeX1 = 'w-x1 h-x1'
+export const sizeX1 = 'w-[1em] h-[1em]'
 
 export const interactivePseudoElement = (
   disabled: boolean,
@@ -17,7 +17,7 @@ export const interactivePseudoElement = (
   }
 ) =>
   classNames(
-    'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
+    'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-[inherit] after:pointer-events-none',
     {
       'hover:after:opacity-10': !disabled,
       'group-hover:after:opacity-10': groupHover && !disabled,

@@ -3,7 +3,7 @@ import { defineComponent, Transition } from 'vue'
 export default defineComponent({
   setup(props, { slots }) {
     const handleBeforeEnter = (el) => {
-      el.classList.add('transition-height', 'overflow-hidden')
+      el.classList.add('transition-[height]', 'overflow-hidden')
       Object.assign(el.style, {
         height: 0,
       })
@@ -30,7 +30,7 @@ export default defineComponent({
     }
 
     const handleBeforeLeave = (el) => {
-      el.classList.add('transition-height', 'overflow-hidden')
+      el.classList.add('transition-[height]', 'overflow-hidden')
       const child = el.firstChild
       const { height } = child.getBoundingClientRect()
       Object.assign(el.style, {

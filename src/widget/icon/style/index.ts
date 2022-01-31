@@ -22,7 +22,7 @@ export const injectStyle = (props: IconProps) => {
 export const injectClass = () => {
   return {
     [ClassName.icon]: computed(() =>
-      classNames(sizeX1, 'inline-block', 'text-center', 'leading-0')
+      classNames(sizeX1, 'inline-block', 'text-center', 'leading-[0]')
     ),
   }
 }
