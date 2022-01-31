@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue'
 import type { ExtractPropTypes } from 'vue'
-import { number } from 'vue-types'
 
 import { ClassName, injectStyle, injectClass } from './style'
+import { size } from '../../shared'
 
 const props = {
-  size: number().def(24),
+  size,
 }
 
 export type IconProps = ExtractPropTypes<typeof props>

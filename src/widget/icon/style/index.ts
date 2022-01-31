@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import classNames from 'classnames'
 
 import type { IconProps } from '../Icon'
-import { style } from '../../../shared'
+import { getSize, style } from '../../../shared'
 import { sizeX1 } from '../../../style'
 
 export const ClassName = {
@@ -13,7 +13,7 @@ export const injectStyle = (props: IconProps) => {
   return {
     [ClassName.icon]: computed(() =>
       style({
-        fontSize: props.size + 'px',
+        fontSize: getSize(props.size),
       })
     ),
   }

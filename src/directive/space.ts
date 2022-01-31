@@ -32,10 +32,10 @@ export const space: Directive<HTMLElement> = (el) => {
     const curr = nodeList[i],
       next = nodeList[i + 1]
     if (isElement(curr) && next) {
-      setClass(curr, 'mr-2')
+      setClass(curr, 'mr-[0.5em]')
     }
     if (isText(curr) && next) {
-      setClass(next, 'ml-2')
+      setClass(next, 'ml-[0.5em]')
     }
   }
 }
