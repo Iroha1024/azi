@@ -1,4 +1,4 @@
-import type { DeepPartial, UnionToIntersection } from '../shared/type'
+import type { DeepPartial, UnionToIntersection } from '../shared'
 
 export const theme = {
   color: {

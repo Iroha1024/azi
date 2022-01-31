@@ -3,7 +3,7 @@ import type { ComputedRef } from 'vue'
 import classNames from 'classnames'
 
 import type { CheckboxProps } from '../Checkbox'
-import { cssVar, style } from '../../../shared'
+import { cssVar, getSize, style } from '../../../shared'
 import {
   absoluteCenter,
   absoluteHidden,
@@ -30,6 +30,11 @@ export const injectStyle = ({
   checked: ComputedRef<boolean>
 }) => {
   return {
+    [ClassName.checkbox]: computed(() =>
+      style({
+        fontSize: getSize(props.size),
+      })
+    ),
     [ClassName.checkboxCheckedBackground]: computed(() =>
       style([
         {

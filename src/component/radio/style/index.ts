@@ -11,7 +11,7 @@ import {
   relative,
   sizeX1,
 } from '../../../style'
-import { cssVar, style } from '../../../shared'
+import { cssVar, getSize, style } from '../../../shared'
 
 export const ClassName = {
   radio: 'radio',
@@ -30,6 +30,11 @@ export const injectStyle = ({
   checked: ComputedRef<boolean>
 }) => {
   return {
+    [ClassName.radio]: computed(() =>
+      style({
+        fontSize: getSize(props.size),
+      })
+    ),
     [ClassName.radioCheckedBackground]: computed(() =>
       style([
         {

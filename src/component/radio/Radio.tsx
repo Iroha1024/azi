@@ -5,10 +5,12 @@ import { bool, number, oneOfType, string } from 'vue-types'
 import { ClassName, injectClass, injectStyle } from './style'
 import { ripple } from '../../directive'
 import { RadioGroupInjectionKey } from './Group'
+import { disabled, size } from '../../shared'
 
 const props = {
+  size,
+  disabled,
   checked: bool().def(false),
-  disabled: bool().def(false),
   value: oneOfType([string(), number()]),
 }
 

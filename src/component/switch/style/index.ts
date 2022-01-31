@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
 import type { SwitchProps } from '../Switch'
-import { cssVar, style } from '../../../shared'
+import { cssVar, getSize, style } from '../../../shared'
 import classNames from 'classnames'
 import {
   interactiveElement,
@@ -29,6 +29,9 @@ export const injectStyle = (props: SwitchProps) => {
   return {
     [ClassName.switch]: computed(() =>
       style([
+        {
+          fontSize: getSize(props.size),
+        },
         {
           width: `${switchWidth}em`,
           height: `${switchHeight}em`,

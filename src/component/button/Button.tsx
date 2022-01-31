@@ -4,10 +4,13 @@ import { bool, string } from 'vue-types'
 
 import { space, ripple } from '../../directive'
 import { ClassName, injectClass, injectStyle } from './style'
+import { disabled, size } from '../../shared'
 
 import { ZIcon, ZLoading } from '../../widget'
 
 const props = {
+  size,
+  disabled,
   type: string<'normal' | 'primary' | 'error'>().def('normal'),
   block: bool().def(false),
   color: string(),
@@ -17,7 +20,6 @@ const props = {
   outlined: bool().def(false),
   text: bool().def(false),
   depressed: bool().def(false),
-  disabled: bool().def(false),
   loading: bool().def(false),
 }
 

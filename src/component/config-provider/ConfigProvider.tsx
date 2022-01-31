@@ -3,7 +3,7 @@ import type { ExtractPropTypes } from 'vue'
 import { object } from 'vue-types'
 
 import type { OriginalTheme } from '../../style'
-import type { DeepPartial } from '../../shared/type'
+import type { DeepPartial } from '../../shared'
 import { injectStyle, ClassName, injectClass } from './style'
 
 const props = {

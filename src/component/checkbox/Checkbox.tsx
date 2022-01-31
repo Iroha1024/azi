@@ -4,14 +4,16 @@ import { bool, number, oneOfType, string } from 'vue-types'
 import { useVModels } from '@vueuse/core'
 
 import { ripple } from '../../directive/ripple'
+import { disabled, size } from '../../shared'
 
 import { checkboxGroupInjectionKey } from './Group'
 import { ClassName, injectStyle, injectClass } from './style'
 
 const props = {
+  size,
+  disabled,
   checked: bool().def(false),
   indeterminate: bool().def(false),
-  disabled: bool().def(false),
   value: oneOfType([string(), number()]),
 }
 

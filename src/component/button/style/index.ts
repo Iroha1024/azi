@@ -3,7 +3,7 @@ import type { ComputedRef } from 'vue'
 import classNames from 'classnames'
 
 import type { ButtonProps } from '../Button'
-import { cssVar, style } from '../../../shared'
+import { cssVar, getSize, style } from '../../../shared'
 import {
   interactiveElement,
   interactivePseudoElement,
@@ -25,6 +25,9 @@ export const injectStyle = ({
   return {
     [ClassName.button]: computed(() =>
       style([
+        {
+          fontSize: getSize(props.size),
+        },
         {
           color: cssVar('--z-white-color'),
           value: type.value !== 'normal',
@@ -73,7 +76,7 @@ export const injectClass = ({
     [ClassName.button]: computed(() =>
       classNames(
         relative,
-        'px-6 py-2',
+        'px-[1.5em] py-[0.5em]',
         'rounded',
         'border-current',
         'transition-shadow',

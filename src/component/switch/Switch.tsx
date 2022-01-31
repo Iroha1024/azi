@@ -5,10 +5,12 @@ import { useVModels } from '@vueuse/core'
 
 import { ClassName, injectClass, injectStyle } from './style'
 import { ripple } from '../../directive/ripple'
+import { disabled, size } from '../../shared'
 
 const props = {
+  size,
+  disabled,
   checked: bool().def(false),
-  disabled: bool().def(false),
   inset: bool().def(false),
 }
 
