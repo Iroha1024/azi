@@ -9,14 +9,27 @@ export const relative = 'relative'
 
 export const sizeX1 = 'w-x1 h-x1'
 
-export const interactivePseudoElement = (disabled: boolean) =>
+export const interactivePseudoElement = (
+  disabled: boolean,
+  {
+    groupHover,
+    groupFocus,
+    peerFocus,
+  }: { groupHover?: boolean; groupFocus?: boolean; peerFocus?: boolean } = {
+    groupHover: false,
+    groupFocus: false,
+    peerFocus: false,
+  }
+) =>
   classNames(
     'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-inherit after:pointer-events-none',
     {
-      'hover:after:opacity-5': !disabled,
-      'active:after:opacity-20': !disabled,
-      'focus:after:opacity-10': !disabled,
-      'peer-focus:after:opacity-10': !disabled,
+      'hover:after:opacity-10': !disabled,
+      'group-hover:after:opacity-10': groupHover && !disabled,
+      'active:after:opacity-30': !disabled,
+      'focus:after:opacity-20': !disabled,
+      'group-focus:after:opacity-20': groupFocus && !disabled,
+      'peer-focus:after:opacity-20': peerFocus && !disabled,
     }
   )
 
