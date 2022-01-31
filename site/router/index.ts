@@ -29,6 +29,11 @@ export default createRouter({
       component: () => import('../component/Radio.vue'),
     },
     {
+      name: 'switch',
+      path: '/switch',
+      component: () => import('../component/Switch.vue'),
+    },
+    {
       path: '/',
       redirect: '/button',
     },
