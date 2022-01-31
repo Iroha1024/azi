@@ -12,7 +12,7 @@ export type CheckBoxGroupProps = ExtractPropTypes<typeof props>
 export const checkboxGroupInjectionKey: InjectionKey<{
   contains: (value: string | number) => boolean
   toggleCheckbox: (value: string | number) => void
-}> = Symbol('checkboxGroup')
+}> = Symbol()
 
 export default defineComponent({
   props,

@@ -13,7 +13,7 @@ export type CollapseGroupProps = ExtractPropTypes<typeof props>
 export const CollapseGroupInjectionKey: InjectionKey<{
   contains: (value: string) => boolean
   setActiveKey: (key: string) => void
-}> = Symbol('collapseGroup')
+}> = Symbol()
 
 export default defineComponent({
   props,

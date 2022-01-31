@@ -12,7 +12,7 @@ export type RadioGroupProps = ExtractPropTypes<typeof props>
 export const RadioGroupInjectionKey: InjectionKey<{
   equals: (value: string | number) => boolean
   toggleRadio: (value: string | number) => void
-}> = Symbol('RadioGroup')
+}> = Symbol()
 
 export default defineComponent({
   props,
