@@ -2,11 +2,12 @@ import { defineComponent } from 'vue'
 import type { ExtractPropTypes } from 'vue'
 import { object } from 'vue-types'
 
-import type { Theme } from '../../style'
+import type { OriginalTheme } from '../../style'
+import type { DeepPartial } from '../../shared/type'
 import { injectStyle, ClassName, injectClass } from './style'
 
 const props = {
-  theme: object<Partial<Theme>>().def(),
+  theme: object<DeepPartial<OriginalTheme>>().def(),
 }
 
 export type ConfigProviderProps = ExtractPropTypes<typeof props>

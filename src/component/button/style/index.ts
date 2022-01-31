@@ -26,7 +26,7 @@ export const injectStyle = ({
     [ClassName.button]: computed(() =>
       style([
         {
-          color: cssVar('--z-font-white-color'),
+          color: cssVar('--z-white-color'),
           value: type.value !== 'normal',
         },
         {

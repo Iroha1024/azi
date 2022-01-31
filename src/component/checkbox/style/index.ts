@@ -80,8 +80,8 @@ export const injectClass = ({
     ),
     [ClassName.checkboxStatus]: computed(() =>
       classNames(
-        'text-[color:var(--z-font-white-color)]',
-        'dark:text-[color:var(--z-font-black-color)]',
+        'text-[color:var(--z-white-color)]',
+        'dark:text-[color:var(--z-black-color)]',
         {
           'z-checked': checked.value,
           [`${absoluteCenter} bg-current w-4/5 h-1/5`]:

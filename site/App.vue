@@ -26,7 +26,7 @@ import SideNav from './component/SideNav.vue'
 
 const config = ref<ConfigProviderProps>({
   theme: {
-    // '--z-primary-color': 'red'
+    color: {},
   },
 })
 </script>

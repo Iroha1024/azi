@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import classNames from 'classnames'
 
 import type { ConfigProviderProps } from '../ConfigProvider'
-import { theme } from '../../../style'
+import { theme, transform } from '../../../style'
 import { prefixCaseObject, style } from '../../../shared'
 
 export const ClassName = {
@@ -12,7 +12,10 @@ export const ClassName = {
 export const injectStyle = (props: ConfigProviderProps) => {
   return {
     [ClassName.configProvider]: computed(() =>
-      style([prefixCaseObject(theme), prefixCaseObject(props.theme)])
+      style([
+        prefixCaseObject(transform(theme)),
+        prefixCaseObject(transform(props.theme)),
+      ])
     ),
   }
 }
@@ -21,8 +24,8 @@ export const injectClass = () => {
   return {
     [ClassName.configProvider]: computed(() =>
       classNames(
-        'text-[color:var(--z-font-black-color)]',
-        'dark:text-[color:var(--z-font-white-color)]'
+        'text-[color:var(--z-black-color)]',
+        'dark:text-[color:var(--z-white-color)]'
       )
     ),
   }

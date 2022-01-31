@@ -1,28 +1,13 @@
-type OptionalPropertyNames<T> = {
-  [K in keyof T]-?: Record<string, unknown> extends { [P in K]: T[K] }
-    ? K
-    : never
-}[keyof T]
-
-type SpreadProperties<L, R, K extends keyof L & keyof R> = {
-  [P in K]: L[P] | Exclude<R[P], undefined>
-}
-
-type Id<T> = T extends infer U ? { [K in keyof U]: U[K] } : never
-
-type SpreadTwo<L, R> = Id<
-  Pick<L, Exclude<keyof L, keyof R>> &
-    Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
-    Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
-    SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
->
-
-//https://stackoverflow.com/questions/49682569/typescript-merge-object-types?answertab=votes#49683575
-export type Spread<A extends readonly [...any]> = A extends [
-  infer L,
-  ...infer R
-]
-  ? SpreadTwo<L, Spread<R>>
-  : unknown
-
 export type MaybeArray<T> = T | Array<T>
+
+export type UnionToIntersection<U> = (
+  U extends any ? (arg: U) => any : never
+) extends (arg: infer P) => any
+  ? P
+  : never
+
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>
+    }
+  : T

@@ -50,7 +50,7 @@ export const injectStyle = (props: SwitchProps) => {
       style({
         color: props.checked
           ? cssVar('--z-primary-color')
-          : cssVar('--z-font-black-color'),
+          : cssVar('--z-black-color'),
         padding: `${ripplePadding}em`,
         right: `${handleRight}em`,
         transform: props.checked
@@ -65,7 +65,7 @@ export const injectStyle = (props: SwitchProps) => {
           height: `${handlerSize}em`,
           backgroundColor: props.checked
             ? cssVar('--z-primary-color')
-            : cssVar('--z-font-white-color'),
+            : cssVar('--z-white-color'),
         },
         {
           backgroundColor: cssVar('--z-disabled-color'),

@@ -5,7 +5,7 @@
   "typings": "es/index.d.ts",
   "scripts": {
     "prepare": "husky install",
-    "dev": "vite site",
+    "dev": "tsc --noEmit && vite site",
     "format": "prettier --write \"src/**/*\" \"site/**/*\"",
     "lint": "eslint \"src/**/*\" \"site/**/*\"",
     "lint:fix": "eslint \"src/**/*\" \"site/**/*\" --fix",

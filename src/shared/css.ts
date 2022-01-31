@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
 
 import type { Theme } from '../style'
-import type { Spread, MaybeArray } from './type'
+import type { MaybeArray } from './type'
 import { hasOwnProperty } from './common'
 import { prefix } from '../style'
 
@@ -50,8 +50,8 @@ export const style = (
 export type Preix<T extends string> = `${typeof prefix}-${T}`
 export type ThemePreix<T extends string> = `--${Preix<T>}`
 
-export const cssVar = <T extends Record<string, string> = Theme>(
-  str: ThemePreix<KebabCase<Extract<keyof Spread<[Theme, T]>, string>>>
+export const cssVar = (
+  str: ThemePreix<KebabCase<keyof Theme>>
 ): `var(${typeof str})` => `var(${str})`
 
 export type KebabCase<T extends string> = T extends `${infer F}${infer R}`
@@ -81,7 +81,7 @@ export const prefixCaseObject = <T extends Record<string, string>>(
 ): PrefixCaseObject<T> => {
   const o: any = {}
   for (const key in v) {
-    o[`--${prefix}-${kebabCase(key)}`] = v[key]
+    o[`--${prefixCase(key)}`] = v[key]
   }
   return o
 }
