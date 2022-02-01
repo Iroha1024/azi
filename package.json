@@ -5,15 +5,15 @@
   "typings": "es/index.d.ts",
   "scripts": {
     "prepare": "husky install",
-    "dev": "tsc --noEmit && vite site",
+    "dev": "vite site",
     "format": "prettier --write \"src/**/*\" \"site/**/*\"",
     "lint": "eslint \"src/**/*\" \"site/**/*\"",
     "lint:fix": "eslint \"src/**/*\" \"site/**/*\" --fix",
     "clean": "rimraf es",
-    "build": "npm run clean && babel --extensions .ts,.tsx src -d es && tsc -p src/tsconfig.json && npm run build:css",
+    "build": "npm run clean && babel --extensions .ts,.tsx src -d es && tsc -p src && npm run build:css",
     "build:css": "cross-env NODE_ENV=production node script/build-css",
     "clean:site": "rimraf dist",
-    "build:site": "npm run clean:site && vite build site"
+    "build:site": "npm run clean:site && vue-tsc --noEmit -p site && vite build site"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
@@ -44,7 +44,8 @@
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
     "vue": "^3.2.26",
-    "vue-router": "4"
+    "vue-router": "4",
+    "vue-tsc": "^0.31.1"
   },
   "peerDependencies": {
     "vue": "^3.2.26"
