@@ -7,6 +7,6 @@ export const ClassName = {
 
 export const injectClass = () => {
   return {
-    [ClassName.collapseContent]: computed(() => classNames('p-4')),
+    [ClassName.collapseContent]: computed(() => classNames('p-[1em]')),
   }
 }

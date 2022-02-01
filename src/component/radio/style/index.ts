@@ -65,7 +65,7 @@ export const injectClass = ({
     [ClassName.radioRipple]: computed(() =>
       classNames(
         relative,
-        'p-2.5',
+        'p-[0.6em]',
         'rounded-full',
         interactivePseudoElement(props.disabled)
       )
@@ -91,6 +91,6 @@ export const injectClass = ({
         }
       )
     ),
-    [ClassName.radioText]: computed(() => classNames('pr-2')),
+    [ClassName.radioText]: computed(() => classNames('pr-[0.5em]')),
   }
 }

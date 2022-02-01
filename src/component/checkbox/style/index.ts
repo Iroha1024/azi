@@ -69,7 +69,7 @@ export const injectClass = ({
     [ClassName.checkboxRipple]: computed(() =>
       classNames(
         relative,
-        'p-2.5',
+        'p-[0.6em]',
         'rounded-full',
         interactivePseudoElement(props.disabled)
       )
@@ -94,6 +94,6 @@ export const injectClass = ({
         }
       )
     ),
-    [ClassName.checkboxText]: computed(() => classNames('pr-2')),
+    [ClassName.checkboxText]: computed(() => classNames('pr-[0.5em]')),
   }
 }

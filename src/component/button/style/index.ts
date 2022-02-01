@@ -76,7 +76,7 @@ export const injectClass = ({
     [ClassName.button]: computed(() =>
       classNames(
         relative,
-        'px-[1.5em] py-[0.5em]',
+        'px-[1em] py-[0.4em]',
         'rounded',
         'border-current',
         'transition-shadow',
@@ -84,7 +84,7 @@ export const injectClass = ({
         interactivePseudoElement(disabled.value),
         {
           block: props.block,
-          '!p-4': props.icon,
+          '!p-[0.5em]': props.icon,
           'align-bottom': !props.block,
           'rounded-none': props.tile,
           '!rounded-full': props.circle || props.icon,
