@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 
 import '@icon-park/vue-next/styles/index.css'
-import 'azi/style.css'
+import 'azi/css/index.css'
 
 import router from './router'
 

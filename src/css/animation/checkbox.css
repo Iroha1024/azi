@@ -1,0 +1,20 @@
+@keyframes z-show-tick {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  40% {
+    width: 50%;
+    height: 0;
+  }
+}
+
+.z-checked {
+  width: 50%;
+  height: 90%;
+  border-top: 0.1em solid currentColor;
+  border-right: 0.1em solid currentColor;
+  transform-origin: top left;
+  transform: translateY(0.45em) scaleY(-1) rotate(324deg);
+  animation: z-show-tick 0.4s linear;
+}

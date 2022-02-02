@@ -1,0 +1,10 @@
+@keyframes z-ripple {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.z-ripple-effect {
+  animation: z-ripple 0.6s linear;
+}
