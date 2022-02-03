@@ -76,18 +76,16 @@ export const injectClass = ({
     [ClassName.button]: computed(() =>
       classNames(
         relative,
-        'px-[1em] py-[0.4em]',
-        'rounded',
+        'justify-center items-center',
         'border-current',
         'transition-shadow',
+        props.block ? 'flex' : 'inline-flex',
+        props.icon ? 'p-[0.75em]' : 'min-w-[4em] h-[2.4em] px-[0.8em]',
+        props.circle || props.icon ? 'rounded-full' : 'rounded',
         interactiveElement(disabled.value),
         interactivePseudoElement(disabled.value),
         {
-          block: props.block,
-          '!p-[0.5em]': props.icon,
-          'align-bottom': !props.block,
           'rounded-none': props.tile,
-          '!rounded-full': props.circle || props.icon,
           'border-transparent': !props.outlined,
           'border-solid': props.outlined,
           border: props.outlined,

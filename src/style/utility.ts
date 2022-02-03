@@ -17,10 +17,10 @@ export const interactivePseudoElement = (
   }
 ) =>
   classNames(
-    'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-[inherit] after:pointer-events-none',
+    'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-[inherit] after:pointer-events-none after:z-[-1]',
     {
-      'hover:after:opacity-10': !disabled,
-      'group-hover:after:opacity-10': groupHover && !disabled,
+      'hover:after:opacity-20': !disabled,
+      'group-hover:after:opacity-20': groupHover && !disabled,
       'active:after:opacity-30': !disabled,
       'focus:after:opacity-20': !disabled,
       'group-focus:after:opacity-20': groupFocus && !disabled,

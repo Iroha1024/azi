@@ -15,7 +15,7 @@ export const ClassName = {
   switchHandler: 'switchHandler',
 }
 
-const switchPadding = 0.25
+const switchPadding = 0.125
 const handlerSize = 1.25
 const switchWidth = (handlerSize + switchPadding) * 2
 const switchHeight = handlerSize + switchPadding * 2
@@ -51,14 +51,12 @@ export const injectStyle = (props: SwitchProps) => {
     ),
     [ClassName.switchRipple]: computed(() =>
       style({
-        color: props.checked
-          ? cssVar('--z-primary-color')
-          : cssVar('--z-black-color'),
+        color: props.checked ? cssVar('--z-primary-color') : '',
         padding: `${ripplePadding}em`,
         right: `${handleRight}em`,
         transform: props.checked
-          ? `translateX(-${handlerSize}em)`
-          : 'translateX(0)',
+          ? 'translateX(0)'
+          : `translateX(-${handlerSize}em)`,
       })
     ),
     [ClassName.switchHandler]: computed(() =>
@@ -96,6 +94,8 @@ export const injectClass = (props: SwitchProps) => {
         'rounded-full',
         '!absolute',
         'transition-transform',
+        'text-[color:var(--z-black-color)]',
+        'dark:text-[color:var(--z-white-color)]',
         interactivePseudoElement(props.disabled, {
           groupHover: true,
         })

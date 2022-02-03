@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import classNames from 'classnames'
 
 import type { IconProps } from '../Icon'
-import { getSize, style } from '../../../shared'
+import { style } from '../../../shared'
 import { sizeX1 } from '../../../style'
 
 export const ClassName = {
@@ -13,7 +13,7 @@ export const injectStyle = (props: IconProps) => {
   return {
     [ClassName.icon]: computed(() =>
       style({
-        fontSize: getSize(props.size),
+        fontSize: props.size + 'px',
       })
     ),
   }
@@ -22,7 +22,7 @@ export const injectStyle = (props: IconProps) => {
 export const injectClass = () => {
   return {
     [ClassName.icon]: computed(() =>
-      classNames(sizeX1, 'inline-block', 'text-center', 'leading-[0]')
+      classNames(sizeX1, 'inline-flex justify-center items-center')
     ),
   }
 }
