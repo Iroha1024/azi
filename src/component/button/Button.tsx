@@ -6,7 +6,7 @@ import { space, ripple } from '../../directive'
 import { ClassName, injectClass, injectStyle } from './style'
 import { disabled, size } from '../../shared'
 
-import { ZIcon, ZLoading } from '../../widget'
+import { ZLoading } from '../../widget'
 
 const props = {
   size,
@@ -51,9 +51,7 @@ export default defineComponent({
             slots.loader ? (
               slots.loader()
             ) : (
-              <ZIcon>
-                <ZLoading></ZLoading>
-              </ZIcon>
+              <ZLoading></ZLoading>
             )
           ) : (
             slots.default?.()
