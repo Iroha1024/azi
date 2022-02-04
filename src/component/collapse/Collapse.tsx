@@ -14,7 +14,7 @@ import { CollapseGroupInjectionKey } from './Group'
 import CollapseTransition from './Transition'
 import { ClassName, injectClass } from './style'
 
-const props = {
+export const props = {
   expanded: bool().def(false),
   destroyInactive: bool().def(false),
   noPadding: bool().def(false),

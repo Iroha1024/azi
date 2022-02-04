@@ -1,12 +1,11 @@
 import { defineComponent, InjectionKey, provide, ref } from 'vue'
 import type { ExtractPropTypes } from 'vue'
-import { bool, string } from 'vue-types'
+import { bool } from 'vue-types'
 
 import { ClassName } from './style/group'
 
-const props = {
+export const props = {
   accordion: bool().def(false),
-  name: string(),
 }
 
 export type CollapseGroupProps = ExtractPropTypes<typeof props>
