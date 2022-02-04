@@ -17,6 +17,7 @@ import { ClassName, injectClass } from './style'
 const props = {
   expanded: bool().def(false),
   destroyInactive: bool().def(false),
+  noPadding: bool().def(false),
 }
 
 export type CollapseProps = ExtractPropTypes<typeof props>
@@ -31,7 +32,7 @@ export default defineComponent({
       collapseGroup ? collapseGroup.contains(key!) : props.expanded
     )
 
-    injectClass()
+    injectClass(props)
 
     const toggleExpand = () => {
       if (collapseGroup) {
@@ -58,13 +59,11 @@ export default defineComponent({
       )
 
       return (
-        <div>
-          <div>
-            {slots.header?.({
-              expanded: expanded.value,
-              toggleExpand,
-            })}
-          </div>
+        <div class={ClassName.collapse}>
+          {slots.header?.({
+            expanded: expanded.value,
+            toggleExpand,
+          })}
           <CollapseTransition>
             {props.destroyInactive ? (
               expanded.value ? (

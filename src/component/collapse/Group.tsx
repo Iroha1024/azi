@@ -1,10 +1,11 @@
-import { defineComponent, computed, InjectionKey, provide } from 'vue'
+import { defineComponent, InjectionKey, provide, ref } from 'vue'
 import type { ExtractPropTypes } from 'vue'
-import { arrayOf, oneOfType, string } from 'vue-types'
-import { useVModels } from '@vueuse/core'
+import { bool, string } from 'vue-types'
+
+import { ClassName } from './style/group'
 
 const props = {
-  active: oneOfType([string(), arrayOf(string())]).isRequired,
+  accordion: bool().def(false),
   name: string(),
 }
 
@@ -18,15 +19,14 @@ export const CollapseGroupInjectionKey: InjectionKey<{
 export default defineComponent({
   props,
   setup(props, { slots }) {
-    const { active } = useVModels(props)
-    const accordion = computed(() => !Array.isArray(active.value))
+    const active = props.accordion ? ref('') : ref<Array<string>>([])
 
     const contains = (value: string) =>
-      accordion.value ? active.value === value : active.value.includes(value)
+      props.accordion ? active.value === value : active.value.includes(value)
 
     const setActiveKey = (key: string) => {
-      if (accordion.value) {
-        active.value = active.value === key ? '' : key
+      if (props.accordion) {
+        ;(active.value as string) = active.value === key ? '' : key
       } else {
         const list = active.value as string[]
         if (list.includes(key)) {
@@ -42,6 +42,6 @@ export default defineComponent({
       setActiveKey,
     })
 
-    return () => <div>{slots.default?.()}</div>
+    return () => <div class={ClassName.collapseGroup}>{slots.default?.()}</div>
   },
 })
