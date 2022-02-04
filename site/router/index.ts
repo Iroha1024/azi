@@ -24,6 +24,11 @@ export default createRouter({
       component: () => import('../component/Ellipsis.vue'),
     },
     {
+      name: 'list',
+      path: '/list',
+      component: () => import('../component/List.vue'),
+    },
+    {
       name: 'radio',
       path: '/radio',
       component: () => import('../component/Radio.vue'),

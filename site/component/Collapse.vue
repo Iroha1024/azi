@@ -15,7 +15,7 @@
       <countComponent2></countComponent2>
     </div>
   </z-collapse>
-  <z-collapse-group v-model:active="active">
+  <z-collapse-group accordion>
     <z-collapse key="1">
       <template #header="{ expanded, toggleExpand }">
         <z-button @click="toggleExpand"
@@ -23,7 +23,7 @@
         >
       </template>
       <div style="height: 100px; background-color: rgb(180, 43, 25)"></div>
-      <z-collapse-group v-model:active="activeKey2">
+      <z-collapse-group accordion>
         <z-collapse v-for="{ key, name, color } in list" :key="key">
           <template #header="{ toggleExpand: click }">
             <z-button @click="click">{{ name }}</z-button>
@@ -40,13 +40,10 @@
     </z-collapse>
     <z-collapse key="3">
       <template #header="{ toggleExpand }">
-        <z-button @click="toggleExpand">collapse 2</z-button>
+        <z-button @click="toggleExpand">collapse 3</z-button>
       </template>
       <div style="height: 100px; background-color: rgb(25, 118, 180)"></div>
     </z-collapse>
-    <z-button @click="toggle"
-      >切换{{ Array.isArray(active) ? '手风琴' : '普通' }}模式</z-button
-    >
   </z-collapse-group>
 </template>
 
@@ -75,12 +72,6 @@ const useCount = () => ({
 
 const countComponent = useCount()
 const countComponent2 = useCount()
-
-const active = ref<string | string[]>([])
-const activeKey2 = ref<string | string[]>('')
-
-const toggle = () =>
-  Array.isArray(active.value) ? (active.value = '') : (active.value = [])
 
 const list = ref([
   {

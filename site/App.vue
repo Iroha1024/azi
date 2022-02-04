@@ -53,7 +53,7 @@ html.dark {
 }
 
 main {
-  padding: 20px 40px;
+  padding: 20px;
   overflow-y: scroll;
   flex: 1;
 }
