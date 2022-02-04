@@ -84,7 +84,7 @@ export const injectClass = (props: SwitchProps) => {
         relative,
         'group',
         'inline-flex items-center',
-        'after:absolute after:z-[-1] after:rounded-full after:bg-current',
+        'after:absolute after:rounded-full after:bg-current',
         'after:inset-[var(--z-switch-inset-offset)]',
         interactiveElement(props.disabled)
       )
@@ -96,6 +96,7 @@ export const injectClass = (props: SwitchProps) => {
         'transition-transform',
         'text-[color:var(--z-black-color)]',
         'dark:text-[color:var(--z-white-color)]',
+        'z-[1]',
         interactivePseudoElement(props.disabled, {
           groupHover: true,
         })

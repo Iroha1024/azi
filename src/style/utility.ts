@@ -17,6 +17,7 @@ export const interactivePseudoElement = (
   }
 ) =>
   classNames(
+    'z-[1]',
     'after:absolute after:inset-0 after:opacity-0 after:transition-opacity after:bg-current after:rounded-[inherit] after:pointer-events-none after:z-[-1]',
     {
       'hover:after:opacity-20': !disabled,
