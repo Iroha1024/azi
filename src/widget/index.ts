@@ -1,4 +1,4 @@
 export * from './arrow'
-export * from './divider'
+export * from './box'
 export * from './icon'
 export * from './loading'
