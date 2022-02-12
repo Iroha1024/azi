@@ -5,3 +5,7 @@
 @import 'animation/checkbox.css';
 @import 'animation/loading.css';
 @import 'animation/ripple.css';
+
+:is(:focus) {
+  outline: none;
+}

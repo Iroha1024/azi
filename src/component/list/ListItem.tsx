@@ -6,6 +6,8 @@ import { ClassName, injectClass, injectStyle } from './style/listItem'
 import { ripple } from '../../directive'
 import { ListInjectionKey } from './List'
 
+import { ZBox } from '../../widget'
+
 export const props = {
   button: bool().def(false),
 }
@@ -22,13 +24,14 @@ export default defineComponent({
     injectClass(props)
 
     return () => (
-      <button
+      <ZBox
         class={ClassName.listItem}
-        disabled={!props.button}
+        tag={'li'}
+        focusable={props.button}
         v-ripple={!props.button}
       >
         {slots.default?.()}
-      </button>
+      </ZBox>
     )
   },
 })

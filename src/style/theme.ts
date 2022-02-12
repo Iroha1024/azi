@@ -7,6 +7,7 @@ export const theme = {
     disabled: '#9CA3AF', //theme('colors.gray.400')
     white: '#F9FAFB', //theme('colors.gray.50')
     black: '#111827', //theme('colors.gray.900')
+    gray: '#E5E7EB', //theme('colors.gray.200')
   },
   size: {
     small: '12px',

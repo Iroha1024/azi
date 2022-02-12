@@ -25,7 +25,7 @@ const switchColor = '#E5E7EB' //theme('colors.gray.200')
 const checkedSwitchColor = '#DDD6FE' //theme('colors.violet.200')
 const disabledSwitchColor = '#D1D5DB' //theme('colors.gray.300')
 
-export type Variable = '--z-switch-inset-offset'
+export type Variable = 'switchInsetOffset'
 
 export const injectStyle = (props: SwitchProps) => {
   return {
