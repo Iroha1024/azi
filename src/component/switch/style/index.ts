@@ -25,6 +25,8 @@ const switchColor = '#E5E7EB' //theme('colors.gray.200')
 const checkedSwitchColor = '#DDD6FE' //theme('colors.violet.200')
 const disabledSwitchColor = '#D1D5DB' //theme('colors.gray.300')
 
+export type Variable = '--z-switch-inset-offset'
+
 export const injectStyle = (props: SwitchProps) => {
   return {
     [ClassName.switch]: computed(() =>
@@ -42,7 +44,6 @@ export const injectStyle = (props: SwitchProps) => {
           value: props.disabled,
         },
         {
-          //@ts-ignore
           '--z-switch-inset-offset': props.inset
             ? '0'
             : `${(switchHeight - handlerSize) / 2 + handlerSize / 8}em`,
@@ -96,7 +97,6 @@ export const injectClass = (props: SwitchProps) => {
         'transition-transform',
         'text-[color:var(--z-black-color)]',
         'dark:text-[color:var(--z-white-color)]',
-        'z-[1]',
         interactivePseudoElement(props.disabled, {
           groupHover: true,
         })

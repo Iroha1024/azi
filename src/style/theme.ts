@@ -25,22 +25,18 @@ export type OriginalTheme = typeof theme
 export type Theme = UnionToIntersection<
   {
     [K in keyof OriginalTheme]: {
-      [T in CombineKey<Extract<keyof OriginalTheme[K], string>, K>]: string
+      [T in keyof OriginalTheme[K] as CombineKey<Extract<T, string>, K>]: string
     }
   }[keyof OriginalTheme]
 >
 
-type FirstUppercase<T extends string> = T extends `${infer F}${infer R}`
-  ? `${Uppercase<F>}${R}`
-  : ''
-
-type CombineKey<L extends string, R extends string> = `${L}${FirstUppercase<R>}`
+type CombineKey<L extends string, R extends string> = `${L}${Capitalize<R>}`
 
 export const transform = (theme: DeepPartial<OriginalTheme>): Theme => {
   const obj = {} as any
   for (const scope in theme) {
     for (const key in theme[scope]) {
-      const [f, ...r] = scope as string
+      const [f, ...r] = scope
       const k = key + f.toUpperCase() + r.join('')
       obj[k] = theme[scope][key]
     }

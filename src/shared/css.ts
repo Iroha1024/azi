@@ -1,12 +1,12 @@
 import type { CSSProperties } from 'vue'
 
-import type { Theme } from '../style'
+import type { Theme, Variable } from '../style'
 import type { MaybeArray } from './type'
 import { hasOwnProperty } from './common'
 import { prefix } from '../style'
 
 type Style = CSSProperties &
-  Partial<PrefixCaseObject<Theme>> & {
+  Partial<CssVariableCaseObject<Theme & Record<Variable, string>>> & {
     set?: (this: Style) => void
     value?: boolean
   }
@@ -48,10 +48,10 @@ export const style = (
 }
 
 export type Preix<T extends string> = `${typeof prefix}-${T}`
-export type ThemePreix<T extends string> = `--${Preix<T>}`
+export type CssVariable<T extends string> = `--${Preix<T>}`
 
 export const cssVar = (
-  str: ThemePreix<KebabCase<keyof Theme>>
+  str: CssVariableCase<keyof Theme | Variable>
 ): `var(${typeof str})` => `var(${str})`
 
 export type KebabCase<T extends string> = T extends `${infer F}${infer R}`
@@ -69,16 +69,19 @@ export const kebabCase = <T extends string>(v: T): KebabCase<T> => {
   return str as any
 }
 
+type CssVariableCase<T extends string> = CssVariable<KebabCase<T>>
+
+//babel-auto-bind-style use
 export const prefixCase = (key: string): Preix<KebabCase<typeof key>> =>
   `${prefix}-${kebabCase(key)}`
 
-export type PrefixCaseObject<T extends Record<string, string>> = {
-  [K in ThemePreix<KebabCase<Extract<keyof T, string>>>]: string
+export type CssVariableCaseObject<T extends Record<string, string>> = {
+  [K in keyof T as CssVariableCase<Extract<K, string>>]: string
 }
 
-export const prefixCaseObject = <T extends Record<string, string>>(
+export const cssVariableCaseObject = <T extends Record<string, string>>(
   v: T
-): PrefixCaseObject<T> => {
+): CssVariableCaseObject<T> => {
   const o: any = {}
   for (const key in v) {
     o[`--${prefixCase(key)}`] = v[key]
